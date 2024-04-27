@@ -1,0 +1,9 @@
+/* Custom CSS for event dot */
+.event-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: red; /* Change color as needed */
+    border-radius: 50%; /* Create a circular dot */
+    margin-left: 3px; /* Adjust spacing from the day number */
+}
