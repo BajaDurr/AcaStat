@@ -1,5 +1,6 @@
 
 // Dropdown Menu Selection
+function changeOptions() {
     var selectBox = document.getElementById("find");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     var secondOptionLabel = document.getElementById("second-option-label");
