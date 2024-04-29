@@ -133,6 +133,34 @@ function hideTodayBtn() {
   }
 }
 
+// Update the event listener for date clicks
+daysContainer.addEventListener("click", (event) => {
+  const clickedDay = event.target;
+
+  // Check if the clicked element is a day in the calendar
+  if (clickedDay.classList.contains("day")) {
+      const dayNumber = parseInt(clickedDay.textContent);
+
+      // Determine the type of day (prev, current, next)
+      let dayType;
+      if (clickedDay.classList.contains("prev")) {
+          dayType = "previous";
+      } else if (clickedDay.classList.contains("today")) {
+          dayType = "current";
+      } else if (clickedDay.classList.contains("next")) {
+          dayType = "next";
+      } else {
+          dayType = "current";
+      }
+
+      // Display the date information in the alert
+      const clickedDate = new Date(currentYear, currentMonth, dayNumber);
+      const formattedDate = `${months[currentMonth]} ${dayNumber}, ${currentYear}`;
+      const dayOfWeek = days[clickedDate.getDay()];
+
+      alert(`You clicked on: ${formattedDate} (${dayOfWeek}), which is a ${dayType} day.`);
+  }
+});
 
 
 document.addEventListener('DOMContentLoaded', function() {
