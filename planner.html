@@ -7,10 +7,16 @@
   <!--From Bootstrap documentation: Create a new index.html file in your project root. Include the <meta name="viewport"> tag as well for proper responsive behavior in mobile devices.-->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AcaStat</title>
+  
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Custom CSS -->
-  <link href="css/styles.css" rel="stylesheet">
+   <!-- STYLESHEET -->
+   <link rel="stylesheet" href="css/calendar.css" />
+   <!-- FONTAWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
 </head>
 <body>
 
@@ -25,10 +31,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="home.html">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Institution</a>
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-expanded="false">Institution</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Action</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -54,71 +60,77 @@
   </header>
 
   <main>
-
-    <div class="row">
-      <div class="col">
-          <div class="card">
-              <div class="card-body">
-                <div class="text-center mb-3">
-                  <button id="prev-month-button" class="btn btn-primary me-2">&lt; Previous Month</button>
-                  <button id="next-month-button" class="btn btn-primary">&gt; Next Month</button>
-                  </div>
-                  <h5 class="card-title" id="month-year"></h5>
-                  <!-- Include navigation buttons for previous month and next month -->
-              
-                  
-                  <!-- Calendar Content -->
-                  <table class="table table-bordered" id="calendar-body">
-                      <thead>
-                          <tr>
-                              <th scope="col">Sun</th>
-                              <th scope="col">Mon</th>
-                              <th scope="col">Tue</th>
-                              <th scope="col">Wed</th>
-                              <th scope="col">Thu</th>
-                              <th scope="col">Fri</th>
-                              <th scope="col">Sat</th>
-                          </tr>
-                      </thead>
-                      <tbody id="calendar-dates">
-                          <!-- Calendar days will be generated here -->
-                      </tbody>
-                  </table>
-                  
-              </div>
+    
+    <div class="containerCalendar">
+      <div class="calendar">
+        <div class="header">
+          <div class="month"></div>
+          <div class="btns">
+            <div class="btn today-btn">
+              <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="btn prev-btn">
+              <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="btn next-btn">
+              <i class="fas fa-chevron-right"></i>
+            </div>
           </div>
+        </div>
+        <div class="weekdays">
+          <div class="day">Sun</div>
+          <div class="day">Mon</div>
+          <div class="day">Tue</div>
+          <div class="day">Wed</div>
+          <div class="day">Thu</div>
+          <div class="day">Fri</div>
+          <div class="day">Sat</div>
+        </div>
+        <div class="days">
+          <!-- lets add days using js -->
+        </div>
       </div>
-      <div class="col">
-          <div class="card">
-              <div class="card-body">
-                  <h5 class="card-title">Agenda</h5>
-                  <ul class="list-group" id="agenda-list">
-                      <!-- Agenda items will be dynamically added here -->
-                  </ul>
-              </div>
-          </div>
-          <!-- Slight bug where date is one day behind than event date (will fix later) -->
-          <div class="card mt-4">
-              <div class="card-body">
-                  <h5 class="card-title">Upcoming Events</h5>
-                  <div id="upcoming-events">
-                      <!-- Upcoming events will be displayed here -->
+    </div>
+
+        <div class="containerAgenda">
+            <div class="agenda">
+                <div class="card-body">
+                    <h5 class="card-title">Agenda</h5>
+                    <ul class="list-group" id="agenda-list">
+                        <!-- Agenda items will be dynamically added here -->
+                    </ul>
+                    <br></br>
+                    <div class="container">
+                      
+                      <div class ="daysAgenda">
+                        <ul id="eventsList"></ul>
+                      </div>
+                      
+                      <hr>
+                      <button id="addEventBtn">Add Event</button>
+                      
+                      <div id="eventInputs" style="display: none;">
+                        <br>
+                          <input type="text" placeholder="Event Name"><br>
+                          <input type="date" placeholder="Event Date"><br>
+                          <input type="text" placeholder="Location"><br>
+                          <button id="saveEventBtn">Save Event</button>
+                      </div>
+                      
                   </div>
-              </div>
-          </div>
-      </div>
-  </div>
-
-      
-  
-
-
-  
+                    
+                    </div>
+                </div>
+            </div>
+           
+            <!-- Slight bug where date is one day behind than event date (will fix later) -->
+            
+        </div>
+    </div>
 
       <footer>
       </footer>
-  
-      <!--From Bootstrap documentation: Include Bootstrap’s CSS and JS. Place the <link> tag in the <head> for our CSS, and the <script> tag for our JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing </body>. Learn more about our CDN links.-->
+
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
       <script src="js/calendar.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
