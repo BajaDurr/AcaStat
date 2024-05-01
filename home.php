@@ -74,8 +74,8 @@
     </div>
     
     <div class="tool-bar">
-      <button class="tool-button" href="calculator.html">Planner <i class="bi bi-calculator"></i></button>
-      <button class="tool-button" href="planner.html">Calender <i class="bi bi-calendar3"></i></button>
+      <button class="tool-button" href="calculator.php">Planner <i class="bi bi-calculator"></i></button>
+      <button class="tool-button" href="planner.php">Calender <i class="bi bi-calendar3"></i></button>
     </div>
 
   
