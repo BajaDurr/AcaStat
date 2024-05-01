@@ -12,10 +12,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="css/home.css">
 
-  <?php // Check if the fields are not empty
-    $con = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+  <?php
+  session_start();
+  if (!isset($_SESSION["username"])) {
+    include('php/login_check.php');
+    shell_exec('php login_check.php');
+  }
   ?>
- 
+
 </head>
 
 <body>
@@ -66,7 +70,7 @@
     <!--Home Page Banner-->
     <div class="jumbotron" >
       <h1 id="banner-text" class="display-4">Welcome back, 
-      <script>document.write(sessionStorage.getItem("username"), ".</h1>");</script>
+      <?php echo $_SESSION["username"] . ".</h1>"; ?>
     </div>
     
     <div class="tool-bar">
