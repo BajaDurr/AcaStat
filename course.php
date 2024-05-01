@@ -11,6 +11,13 @@
   <!--Style sheet for icons: https://icons.getbootstrap.com/-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="css/course.css">
+  <?php
+    session_start();
+    if (!isset($_SESSION["loggedIn"])) {
+      include('php/login_check.php');
+      shell_exec('php login_check.php');
+    }
+  ?>
 </head>
 
 <body>

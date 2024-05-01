@@ -8,6 +8,14 @@
   <title>AcaStat</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <?php
+    session_start();
+    if (!isset($_SESSION["loggedIn"])) {
+      include('php/login_check.php');
+      shell_exec('php login_check.php');
+    }
+  ?>
   
    <!-- CSS styles -->
   <style>
