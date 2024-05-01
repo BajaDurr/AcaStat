@@ -124,3 +124,50 @@ header {
   border-radius: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+#add-event-button {
+  display: none; /* Initially hide "Add Event" button */
+  margin-top: 10px;
+  padding: 6px 12px; /* Adjust padding to make button smaller */
+  font-size: 14px; /* Adjust font size */
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* Center button horizontally */
+  align-items: center; /* Center button vertically */
+}
+
+#add-event-button:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Style for agenda list items */
+#agenda-list li {
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* Align items and delete button at opposite ends */
+  align-items: center;
+}
+
+/* Style for delete button within agenda list item */
+.delete-button {
+  background-color: #dc3545; /* Red color for delete button */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* Darker red color on hover */
+}
+

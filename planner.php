@@ -25,7 +25,7 @@
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <img class="mb-4" src="assets/CAP_LOGO.png" alt="" width="5%" height="auto"></img>
-                    <a class="navbar-brand" href="#">AcaStat</a>
+                    <a class="navbar-brand" href="home.php">AcaStat</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -96,7 +96,9 @@
                         <h3>Agenda</h3>
                         <div id="selected-date-info"></div>
                         <ul id="agenda-list"></ul>
+                        <button id="add-event-button" style="display: none;">Add Event</button>
                     </div>
+                    
                     <div class="card mt-4" id="upcoming-tab">
                         <h3>Upcoming Events</h3>
                         <div id="upcoming-events"></div>
