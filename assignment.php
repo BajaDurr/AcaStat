@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <header>
+  <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <img class="mb-4" src="assets/CAP_LOGO.png" alt="" width="5%" height=auto></img>
@@ -31,6 +31,11 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="home.php">Home</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Search Catalogue</a>
+            </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Institution</a>
               <ul class="dropdown-menu">
@@ -50,12 +55,34 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Separated link</a></li>
               </ul>
-            </li>     
+            </li>
+            <?php
+              $con = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+
+              if ($con) {
+                $uname = $_SESSION["username"];
+
+                $sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
+
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result) == 1) {
+                  echo "<li class='nav-item dropdown'>";
+                  echo "<a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='#' role='button' aria-expanded='false'>Admin Tools</a>";
+                  echo "<ul class='dropdown-menu'>";
+                  echo "<li><a class='dropdown-item' href='create_user.php'>Create New User</a></li>";
+                  echo "<li><a class='dropdown-item' href='create_course.php'>Create New Course</a></li>";
+                  echo "</ul>";
+                  echo "</li>";
+                }
+              } 
+            ?>        
           </ul>
         </div>
+
       </div>
     </nav>
   </header>
+
 
   <main>
     <!--https://getbootstrap.com/docs/5.0/forms/form-control/-->
@@ -77,7 +104,7 @@
   </footer>
   
   <!--From Bootstrap documentation: Include Bootstrap’s CSS and JS. Place the <link> tag in the <head> for our CSS, and the <script> tag for our JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing </body>. Learn more about our CDN links.-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

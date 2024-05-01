@@ -1,0 +1,10 @@
+
+.course-card {
+    padding-left: 2em;
+    width: 90%;
+    height: 5em;
+    margin-bottom: 2em;
+    border-bottom: solid;
+    border-color: rgb(218, 217, 217);
+    border-width: 2px;
+}

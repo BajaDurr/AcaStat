@@ -18,6 +18,13 @@
       include('php/login_check.php');
       shell_exec('php login_check.php');
     }
+    
+    //connect database
+    $conn = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+    if($conn->connect_error) {
+        die('Connection Failed : '.$conn->connect_error);
+    }
+      
   ?>
 
 </head>
@@ -35,8 +42,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="home.php">Home</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="">Search Catalogue</a>
+            </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Institution</a>
               <ul class="dropdown-menu">
@@ -56,9 +68,30 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Separated link</a></li>
               </ul>
-            </li>     
+            </li>
+            <?php
+              $con = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+
+              if ($con) {
+                $uname = $_SESSION["username"];
+
+                $sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
+
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result) == 1) {
+                  echo "<li class='nav-item dropdown'>";
+                  echo "<a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='#' role='button' aria-expanded='false'>Admin Tools</a>";
+                  echo "<ul class='dropdown-menu'>";
+                  echo "<li><a class='dropdown-item' href='create_user.php'>Create New User</a></li>";
+                  echo "<li><a class='dropdown-item' href='create_course.php'>Create New Course</a></li>";
+                  echo "</ul>";
+                  echo "</li>";
+                }
+              } 
+            ?>        
           </ul>
         </div>
+
       </div>
     </nav>
   </header>
@@ -69,8 +102,16 @@
 
     <!--Home Page Banner-->
     <div class="jumbotron" >
-      <h1 id="banner-text" class="display-4">Welcome back, 
-      <?php echo $_SESSION["username"] . ".</h1>"; ?>
+      <h1 id="banner-text" class="display-4">Welcome back,
+      <?php 
+        $sql = "SELECT firstName, lastName FROM users WHERE username ='" . $_SESSION['username'] . "'";
+
+        $result = mysqli_query($conn, $sql);
+
+        $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+          echo $user[0]['firstName'] . " " . $user[0]['lastName'];
+      ?>
     </div>
     
     <div class="tool-bar">
