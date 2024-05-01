@@ -22,7 +22,7 @@ if($conn->connect_error) {
     die('Connection Failed : '.$conn->connect_error);
 }
 else {
-    $stmt = $conn->prepare("INSERT INTO user(userID, firstName, lastName, phone, email, username, password, address, apartment, city, state, zipCode)
+    $stmt = $conn->prepare("INSERT INTO users(userID, firstName, lastName, phone, email, username, password, address, apartment, city, state, zipCode)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");	
         $stmt ->bind_param("isssssssissi", $userID, $firstName, $lastName, $phone, $email, $username, $password, $address, $apartment, $city, $state, $zipCode);
         $stmt ->execute();
