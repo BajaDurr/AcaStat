@@ -14,7 +14,7 @@
 
   <?php
   session_start();
-  if (!isset($_SESSION["username"])) {
+  if (!isset($_SESSION["loggedIn"])) {
     include('php/login_check.php');
     shell_exec('php login_check.php');
   }
