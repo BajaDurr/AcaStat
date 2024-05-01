@@ -51,20 +51,24 @@
   </header>
 
   <main class="container-fluid">
-    <h1 class = "text-center">Create New User</h1>
+    
 
-    <div class = "text-center"> 
-      <h5 class = "text-center">Select a type of user to create:</h5>
-      
-      <input type="radio" class="btn-check" name="options-outlined" id="option1" autocomplete="off" checked>
-      <label class="btn btn-outline-primary" for="option1">Student</label>
+    <form class="needs-validation" action="php/create-user-handler.php" method="post" novalidate>
 
-      <input type="radio" class="btn-check" name="options-outlined" id="option2" autocomplete="off">
-      <label class="btn btn-outline-primary" for="option2">Instructor</label>
+      <h1 class = "text-center">Create New User</h1>
 
-      <input type="radio" class="btn-check" name="options-outlined" id="option3" autocomplete="off">
-      <label class="btn btn-outline-primary" for="option3">Admin</label>
-    </div>
+      <div class = "text-center"> 
+        <h5 class = "text-center">Select a type of user to create:</h5>
+        
+        <input type="radio" class="btn-check" name="options-outlined" id="option1" value="student" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="option1">Student</label>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="option2" value="instructor" autocomplete="off">
+        <label class="btn btn-outline-primary" for="option2">Instructor</label>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="option3" value="admin" autocomplete="off">
+        <label class="btn btn-outline-primary" for="option3">Admin</label>
+      </div>
 
     <div class = "text-center"> 
       
@@ -76,8 +80,6 @@
     </div>
 
     <hr></hr>
-
-    <form class="needs-validation" action="php/create-user-handler.php" method="post" novalidate>
 
       <div class="row justify-content-center">
 
