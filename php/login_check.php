@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($con) {
         $uname = mysqli_real_escape_string($con, $_POST['Username']);
         $pass = mysqli_real_escape_string($con, $_POST['Password']);
-        $sql = "SELECT Username, Password FROM admins WHERE Username = '$uname' AND Password = '$pass'";
+        $sql = "SELECT username, password FROM users WHERE username = '$uname' AND password = '$pass'";
         $result = mysqli_query($con, $sql);
 
         if (mysqli_num_rows($result) == 1) {

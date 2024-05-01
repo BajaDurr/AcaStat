@@ -11,6 +11,10 @@
   <!--Style sheet for icons: https://icons.getbootstrap.com/-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="css/home.css">
+
+  <?php // Check if the fields are not empty
+    $con = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+  ?>
  
 </head>
 
