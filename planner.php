@@ -10,6 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/calendar.css" rel="stylesheet">
+
+    <?php
+        session_start();
+        if (!isset($_SESSION["loggedIn"])) {
+            include('php/login_check.php');
+            shell_exec('php login_check.php');
+        }
+    ?>
 </head>
 <body>
     <div class="container">

@@ -8,6 +8,15 @@
   <title>AcaStat</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <?php
+    session_start();
+    if (!isset($_SESSION["loggedIn"])) {
+      include('php/login_check.php');
+      shell_exec('php login_check.php');
+    }
+  ?>
+    
 </head>
 <body>
 
@@ -51,20 +60,24 @@
   </header>
 
   <main class="container-fluid">
-    <h1 class = "text-center">Create New User</h1>
+    
 
-    <div class = "text-center"> 
-      <h5 class = "text-center">Select a type of user to create:</h5>
-      
-      <input type="radio" class="btn-check" name="options-outlined" id="option1" autocomplete="off" checked>
-      <label class="btn btn-outline-primary" for="option1">Student</label>
+    <form class="needs-validation" action="php/create-user-handler.php" method="post" novalidate>
 
-      <input type="radio" class="btn-check" name="options-outlined" id="option2" autocomplete="off">
-      <label class="btn btn-outline-primary" for="option2">Instructor</label>
+      <h1 class = "text-center">Create New User</h1>
 
-      <input type="radio" class="btn-check" name="options-outlined" id="option3" autocomplete="off">
-      <label class="btn btn-outline-primary" for="option3">Admin</label>
-    </div>
+      <div class = "text-center"> 
+        <h5 class = "text-center">Select a type of user to create:</h5>
+        
+        <input type="radio" class="btn-check" name="options-outlined" id="option1" value="student" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="option1">Student</label>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="option2" value="instructor" autocomplete="off">
+        <label class="btn btn-outline-primary" for="option2">Instructor</label>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="option3" value="admin" autocomplete="off">
+        <label class="btn btn-outline-primary" for="option3">Admin</label>
+      </div>
 
     <div class = "text-center"> 
       
@@ -77,13 +90,11 @@
 
     <hr></hr>
 
-    <form class="needs-validation" novalidate>
-
       <div class="row justify-content-center">
 
         <div class="col-sm-2">
           <label for="validationTooltip01">First name</label>
-          <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" required>
+          <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" name="firstName" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
@@ -91,7 +102,7 @@
 
         <div class="col-sm-2">
           <label for="validationTooltip02">Last name</label>
-          <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" required>
+          <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" name="lastName" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
@@ -99,7 +110,7 @@
 
         <div class="col-sm-2">
           <label for="validationTooltip08">Phone</label>
-          <input type="text" class="form-control" id="validationTooltip08" placeholder="Phone" required>
+          <input type="text" class="form-control" id="validationTooltip08" placeholder="Phone" name="phone" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
@@ -107,7 +118,7 @@
 
         <div class="col-sm-2">
           <label for="validationTooltip09">Email</label>
-          <input type="text" class="form-control" id="validationTooltip09" placeholder="Email" required>
+          <input type="text" class="form-control" id="validationTooltip09" placeholder="Email" name="email" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
@@ -121,7 +132,7 @@
 
         <div class="col-sm-2">
           <label for="validationTooltipUsername">Username</label>
-          <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" disabled>
+          <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" name="username">
           <div class="invalid-tooltip">
             Please choose a unique and valid username.
           </div>
@@ -129,7 +140,7 @@
 
         <div class="col-sm-2">
           <label for="validationTooltipPassword">Password</label>
-          <input type="text" class="form-control" id="validationTooltipPassword" placeholder="Password" disabled>
+          <input type="text" class="form-control" id="validationTooltipPassword" placeholder="Password" name="password" required>
           <div class="invalid-tooltip">
             Please choose a unique and valid password.
           </div>
@@ -143,7 +154,7 @@
 
         <div class="col-sm-3">
           <label for="validationTooltip06">Address</label>
-          <input type="text" class="form-control" id="validationTooltip06" placeholder="Address" required>
+          <input type="text" class="form-control" id="validationTooltip06" placeholder="Address" name="address" required>
           <div class="invalid-tooltip">
             Please provide a valid address.
           </div>
@@ -151,7 +162,7 @@
 
         <div class="col-sm-1">
           <label for="validationTooltip07">Apartment/suite/etc.</label>
-          <input type="text" class="form-control" id="validationTooltip07" placeholder="Apartment/suite/etc." required>
+          <input type="text" class="form-control" id="validationTooltip07" placeholder="Apartment/suite/etc." name="apartment" required>
           <div class="invalid-tooltip">
             Please provide a valid address.
           </div>
@@ -163,7 +174,7 @@
 
         <div class="col-sm-2">
           <label for="validationTooltip03">City</label>
-          <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
+          <input type="text" class="form-control" id="validationTooltip03" placeholder="City" name="city" required>
           <div class="invalid-tooltip">
             Please provide a valid city.
           </div>
@@ -231,7 +242,7 @@
 
         <div class="col-sm-1">
           <label for="validationTooltip05">Zip</label>
-          <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
+          <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" name="zipCode"required>
           <div class="invalid-tooltip">
             Please provide a valid zip.
           </div>

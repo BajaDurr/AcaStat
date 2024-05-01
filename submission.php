@@ -8,10 +8,18 @@
   <title>AcaStat</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <?php
+    session_start();
+    if (!isset($_SESSION["loggedIn"])) {
+      include('php/login_check.php');
+      shell_exec('php login_check.php');
+    }
+  ?>
 </head>
 <body>
 
-    <header>
+  <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <img class="mb-4" src="assets/CAP_LOGO.png" alt="" width="5%" height=auto></img>
@@ -51,19 +59,6 @@
   </header>
 
   <main>
-    <!--https://getbootstrap.com/docs/5.0/forms/form-control/-->
-    <div class="mb-3">
-      <label for="formFile" class="form-label">Default file input example</label>
-      <input class="form-control" type="file" id="formFile">
-    </div>
-
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-
-    <!--https://getbootstrap.com/docs/4.0/components/buttons/-->
-    <button type="button" class="btn btn-primary">Submit Assignment</button>
   </main>
 
   <footer>

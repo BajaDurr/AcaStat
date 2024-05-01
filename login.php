@@ -15,7 +15,7 @@ echo '</head>';
 
 echo '<body class="text-center">';
 
-echo '<form id="someForm" class="form-signin" action="" method="post">';
+echo '<form id="someForm" class="form-signin" action="php/login_check.php" method="post">';
 echo '<img class="mb-4" src="assets/ACASTAT_LOGO.png" alt="" width="150" height="150"></img>';
 echo '<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>';
 echo '<input type="username" id="inputUsername" class="form-control" name="Username" placeholder="User Name" required autofocus>';
@@ -23,19 +23,8 @@ echo '<input type="password" id="inputPassword" class="form-control" name="Passw
 echo '<p style="color:red">';
 echo isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
 echo '</p>';
-echo '<button class="btn btn-lg btn-primary btn-block" type="button" name="Log In" value="Log In" onclick="myFunction()">Log In</button>';
+echo '<button class="btn btn-lg btn-primary btn-block" type="submit" name="Log In" value="Log In" onclick="myFunction()">Log In</button>';
 echo '</form>';
-
-echo '<script>';
-echo 'form=document.getElementById("someForm");';
-echo 'function myFunction() {';
-echo 'sessionStorage.clear();';
-echo 'sessionStorage.setItem("username", document.getElementById("inputUsername").value);';
-echo 'console.log("hello");';
-echo 'form.action="php/login_check.php";';
-echo 'form.submit();';
-echo '}';
-echo '</script>';
 
 echo '<script src="vendor/jquery/jquery.min.js"></script>';
 echo '<script src="vendor/bootstrap/js/bootstrap.min.js"></script>';
