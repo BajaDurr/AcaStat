@@ -50,7 +50,27 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Separated link</a></li>
               </ul>
-            </li>     
+            </li>  
+            <?php
+              $con = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+
+              if ($con) {
+                $uname = $_SESSION["username"];
+
+                $sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
+
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result) == 1) {
+                  echo "<li class='nav-item dropdown'>";
+                  echo "<a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='#' role='button' aria-expanded='false'>Admin Tools</a>";
+                  echo "<ul class='dropdown-menu'>";
+                  echo "<li><a class='dropdown-item' href='create_user.php'>Create New User</a></li>";
+                  echo "<li><a class='dropdown-item' href='create_course.php'>Create New Course</a></li>";
+                  echo "</ul>";
+                  echo "</li>";
+                }
+              } 
+            ?>   
           </ul>
         </div>
       </div>
