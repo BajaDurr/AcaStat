@@ -77,7 +77,7 @@
     <section class="file-submission">
       <h2>Submit Your Work</h2>
       <form id="assignmentForm" action="php/submit_assignment.php" method="post" onsubmit="return validateForm()">
-
+        <!-- <input type="hidden" name ="MAX FILE SIZE" value = "1073741824"> -->
         <div class="mb-3">
           <label for="myfile" class="form-label">Upload File:</label>
           <input type="file" class="form-control" id="myfile" name="myfile" accept=".pdf,.doc,.docx, .ZIP, .txt" onchange="enableSubmitButton()" />
