@@ -1,247 +1,126 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
-:root {
-  --primary-color: #0a3ef9;
-  --text-color: #1d1d1d;
-  --bg-color: #f1f1fb;
+/* Custom CSS for event dot */
+.event-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: red; /* Change color as needed */
+  border-radius: 50%; /* Create a circular dot */
+  margin-left: 3px; /* Adjust spacing from the day number */
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  
+
+/* Style for the header */
+header {
+  color: #ffffff; /* Text color */
+  width: 100%; /* Full width */
+  padding: 20px 0; /* Top and bottom padding */
 }
-body {
-  background-color: #fff;
+
+/* Style for the navigation bar */
+.navbar {
+  width: 100%; /* Full width */
+  padding-right: 0; /* Remove right padding */
 }
-.containerCalendar {
-  display: inline-flex;
-  width: auto;
-  /* min-height: 100vh; */
-  align-items: center;
-  justify-content: center;
+
+/* Style for the navigation links */
+.navbar-nav {
+  flex-direction: row; /* Display links horizontally */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 15px; /* Adjust spacing between nav items */
+}
+
+.navbar-brand {
+  margin-right: auto; /* Push brand to the left */
+}
+
+/* Style for the calendar tab container */
+#calendar-tab {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
+
+/* Style for the calendar table */
+#calendar-body {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calendar-body th,
+#calendar-body td {
   padding: 10px;
-  flex-wrap: wrap;
- 
-}
-
-.containerAgenda {
-  display: inline-flex;
-  width: 400px;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 10px;
-  justify-content: center;
-}
-
-.calendar {
-  width: 100%;
-  max-width: 600px;
-  padding: 30px 20px;
-  border-radius: 10px;
-  background-color: var(--bg-color);
-}
-
-.agenda {
-  width: 100%;
-  max-width: 600px;
-  padding: 30px 20px;
-  border-radius: 10px;
-  background-color: var(--bg-color);
-}
-
-.calendar .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #ccc;
-}
-.calendar .header .month {
-  display: flex;
-  align-items: center;
-  font-size: 25px;
-  font-weight: 600;
-  color: var(--text-color);
-}
-.calendar .header .btns {
-  display: flex;
-  gap: 10px;
-}
-.calendar .header .btns .btn {
-  width: 50px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  color: #fff;
-  background-color: var(--primary-color);
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.agenda .header .btns .btn {
-  width: 600px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 80px;
-  color: #fff;
-  background-color: var(--primary-color);
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-
-.calendar .header .btns .btn:hover {
-  background-color: #091adb;
-  transform: scale(1.05);
-}
-.weekdays {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-.weekdays .day {
-  width: calc(100% / 7 - 10px);
   text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-}
-.days {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.days .day {
-  width: calc(100% / 7 - 10px);
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--text-color);
-  background-color: #fff;
-  transition: all 0.3s;
+  border: 1px solid #ddd;
 }
 
-.daysAgenda {
-  display: block;
-  flex-wrap: wrap;
-  gap: 10px;
+#calendar-body th {
+  background-color: #f0f0f0;
 }
 
-.daysAgenda .day {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--text-color);
-  background-color: #fff;
-  transition: all 0.3s;
-}
-
-.days .day:not(.next):not(.prev):hover{background-color:orange;}
-.days .day:not(.next):not(.prev):focus{background-color:red;}
-
-.days .day:not(.next):not(.prev):hover {
-  color: #fff;
-  background-color: var(--primary-color);
-  transform: scale(1.05);
-}
-.days .day.today {
-  color: #fff;
-  background-color: rgb(84, 83, 83);
-}
-.days .day.next,
-.days .day.prev {
-  color: #ccc;
-}
-
-/* Credits */
-.credits a {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 14px;
-  color: #aaa;
-  
-}
-.credits span {
-  color: var(--primary-color);
-}
-
-
-/* AGENDA CSS */
-
-
-.container {
-  text-align: center;
-}
-
-input {
-  margin-bottom: 10px;
-  padding: 8px;
-  width: 200px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #0a3ef9;
-  color: white;
-  border: none;
+#calendar-body td {
   cursor: pointer;
-  border-radius: 5px;
 }
 
-button:hover {
-  background-color: #002ac2;
-  transform: scale(1.05);
-}
-
-.delete-btn {
-  background-color: #ff6347; /* Red color for delete button */
+/* Style for the selected calendar date */
+.selected-date {
+  background-color: #007bff;
   color: #fff;
-  border: none;
-  padding: 0 8px;
-  border-radius: 3px;
-  cursor: pointer;
-  margin-right: 0; /* Remove margin-right to align delete button to the left */
-}
-.delete-btn:hover {
-  background-color: #d9534f; /* Darker red color on hover */
+  font-weight: bold;
 }
 
-.daysAgenda {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.daysAgenda .day {
+/* Style for the days of the calendar */
+.calendar-day {
   position: relative;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  height: 80px;
+}
+
+.calendar-day:hover {
+  background-color: #f9f9f9;
+}
+
+/* Style for the day number in the calendar */
+.calendar-day-number {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Style for the calendar header */
+#month-year {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Style for the navigation buttons */
+#prev-month-button,
+#next-month-button {
+  font-size: 14px;
+}
+
+/* Style for the agenda tab */
+#agenda-tab, #upcoming-tab {
+  padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--text-color);
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the agenda list */
+#agenda-list, #upcoming-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style for agenda list items */
+#agenda-list li, #upcoming-list li {
+  margin-bottom: 8px;
+  padding: 8px;
   background-color: #fff;
-  padding: 0 15px;
-  box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
