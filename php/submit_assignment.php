@@ -1,46 +1,52 @@
 <?php
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if a file was uploaded successfully
-    if (isset($_FILES["myfile"]) && $_FILES["myfile"]["error"] == UPLOAD_ERR_OK) {
-        $uploadDir = "uploads/"; // Directory where uploaded files will be stored
-        $uploadFile = $uploadDir . basename($_FILES["myfile"]["name"]);
+$uploadOk = 1;
 
-        // Move uploaded file to specified directory
-        if (move_uploaded_file($_FILES["myfile"]["tmp_name"], $uploadFile)) {
-            echo "File uploaded successfully.";
-        } else {
-            echo "Error uploading file.";
-        }
+// Check if form was submitted and file was uploaded
+if(isset($_POST["submit"]) && !empty($_FILES["fileToUpload"]["name"])) {
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Additional processing (e.g., save file path to database, process form data)
-        $notes = $_POST["notes"]; // Retrieve additional form data (notes)
-        // Perform further processing as needed (e.g., save to database)
+    // Check if file is an actual image
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
     } else {
-        echo "Error: No file uploaded.";
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+    // Check file size (max 500KB)
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    // Allow only certain file formats (here, only JPEG and PNG are allowed)
+    if($imageFileType != "jpg" && $imageFileType != "png") {
+        echo "Sorry, only JPG, JPEG, and PNG files are allowed.";
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    } else {
+        // Try to upload the file
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
     }
 } else {
-    echo "Invalid request method.";
+    echo "Please select a file to upload.";
 }
-
-// Example: Save file path and form data to database
-// Assume you have a database connection established
-$filePath = $uploadFile; // File path saved during upload
-$assignmentId = 123; // Example assignment ID (replace with actual ID)
-$notes = $_POST["notes"]; // Additional form data (notes)
-
-// Insert into database (example using PDO)
-try {
-    $pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "username", "password");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $stmt = $pdo->prepare("INSERT INTO submissions (assignment_id, file_path, notes) VALUES (?, ?, ?)");
-    $stmt->execute([$assignmentId, $filePath, $notes]);
-
-    echo "Submission recorded successfully.";
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-
 ?>
