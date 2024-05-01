@@ -61,7 +61,8 @@
 
     <!--Home Page Banner-->
     <div class="jumbotron" >
-      <h1 id="banner-text" class="display-4">Welcome back, Student.</h1>
+      <h1 id="banner-text" class="display-4">Welcome back, 
+      <script>document.write(sessionStorage.getItem("username"), ".</h1>");</script>
     </div>
     
     <div class="tool-bar">
