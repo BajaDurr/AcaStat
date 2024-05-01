@@ -4,14 +4,21 @@ document.addEventListener('DOMContentLoaded', function() {
   const agendaListElement = document.getElementById('agenda-list');
   const upcomingEventsElement = document.getElementById('upcoming-events');
 
+
+
+
   // Sample event data (replace this with your actual event data)
   const events = {
-      '2024-04-15': ['Event 1', 'Event 2'],
-      '2024-04-20': ['Event 3'],
-      '2024-04-25': ['Event 4'],
-      '2024-05-01': ['Event 5'],
-      '2025-04-22': ['Event 6']
+      '2024-04-15': ['(Test) Event 1', '(Test) Event 2'],
+      '2024-04-20': ['(Test) Event 3'],
+      '2024-04-25': ['(Test) Event 4'],
+      '2024-05-01': ['(Test) Event 5'],
+      '2025-04-22': ['(Test) Event 6']
   };
+
+  // Depending on course input course name into front ... (CS-101) "Example"
+ 
+
 
   let currentMonth; // Track current displayed month
   let currentYear; // Track current displayed year
@@ -101,29 +108,132 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }
 
-  // Function to display agenda for the selected date
-  function displayAgenda(selectedDate) {
-      // Clear existing agenda items
-      agendaListElement.innerHTML = '';
+// Function to display agenda for the selected date
+function displayAgenda(selectedDate) {
+  // Clear existing agenda items
+  agendaListElement.innerHTML = '';
 
-      // Display selected date above agenda items
-      const selectedDateElement = document.createElement('p');
-      selectedDateElement.textContent = `${formatDate(selectedDate)}`;
-      agendaListElement.appendChild(selectedDateElement);
+  // Display selected date above agenda items
+  const selectedDateElement = document.createElement('p');
+  selectedDateElement.textContent = `${formatDate(selectedDate)}`;
+  agendaListElement.appendChild(selectedDateElement);
 
-      // Check if there are events for the selected date
-      if (events[selectedDate]) {
-          events[selectedDate].forEach(event => {
-              const listItem = document.createElement('li');
-              listItem.textContent = event;
-              agendaListElement.appendChild(listItem);
-          });
-      } else {
+  // Check if there are events for the selected date
+  if (events[selectedDate] && events[selectedDate].length > 0) {
+      events[selectedDate].forEach(event => {
+          // Create list item for the event
           const listItem = document.createElement('li');
-          listItem.textContent = 'No events for this date';
+
+          // Create span for the event text
+          const eventText = document.createElement('span');
+          eventText.textContent = event;
+          listItem.appendChild(eventText);
+
+          // Create delete button for the event
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Delete';
+          deleteButton.classList.add('delete-button'); // Add class for styling
+          deleteButton.addEventListener('click', () => {
+              deleteEvent(selectedDate, event); // Call deleteEvent function on button click
+              updateCalendarEventIndicator(selectedDate); // Update calendar date indicator after deletion
+              displayAgenda(selectedDate); // Refresh agenda display after deletion
+          });
+          listItem.appendChild(deleteButton);
+
+          // Append list item to agenda list
           agendaListElement.appendChild(listItem);
+      });
+  } else {
+      const listItem = document.createElement('li');
+      listItem.textContent = 'No events for this date';
+      agendaListElement.appendChild(listItem);
+
+      // If no events, remove event indicator from calendar date
+      updateCalendarEventIndicator(selectedDate);
+  }
+
+  // Show or hide the "Add Event" button based on whether a date is selected
+  const addEventButton = document.getElementById('add-event-button');
+  if (selectedDate) {
+      addEventButton.style.display = 'inline-block'; // Show "Add Event" button
+      addEventButton.onclick = () => {
+          const newEvent = prompt('Enter new event:');
+          if (newEvent) {
+              addEvent(selectedDate, newEvent); // Add new event to events data structure
+              displayAgenda(selectedDate); // Refresh agenda display after adding event
+          }
+      };
+  } else {
+      addEventButton.style.display = 'none'; // Hide "Add Event" button if no date is selected
+  }
+}
+
+// Function to add a new event to the events object
+function addEvent(selectedDate, newEvent) {
+  if (!events[selectedDate]) {
+      events[selectedDate] = []; // Initialize array if events don't exist for the date
+  }
+  events[selectedDate].push(newEvent); // Add new event to the events array for the date
+
+  // Save events to localStorage or backend (optional)
+  saveEventsToStorage(); // Custom function to save events to localStorage or backend
+}
+
+// Function to save events to localStorage (example)
+function saveEventsToStorage() {
+  localStorage.setItem('events', JSON.stringify(events));
+}
+
+// Function to load events from localStorage (example)
+function loadEventsFromStorage() {
+  const storedEvents = localStorage.getItem('events');
+  if (storedEvents) {
+      events = JSON.parse(storedEvents);
+  } else {
+      events = {}; // Initialize events as empty object if no events are stored
+  }
+}
+
+// Function to delete an event from the events object
+
+function deleteEvent(selectedDate, eventToDelete) {
+  
+  if (events[selectedDate]) {
+      // Filter out the event to delete
+      events[selectedDate] = events[selectedDate].filter(event => event !== eventToDelete);
+
+      // If no more events for the date, remove the date from events object
+      if (events[selectedDate].length === 0) {
+          delete events[selectedDate];
+          
+      }
+
+      // Immediately update calendar date indicator after deletion
+      updateCalendarEventIndicator(selectedDate);
+
+      // Refresh agenda display after deletion (if needed)
+      displayAgenda(selectedDate);
+  }
+}
+
+
+// Function to update calendar date indicator based on events presence
+function updateCalendarEventIndicator(selectedDate) {
+  const calendarDateCell = document.getElementById(`calendar-date-${selectedDate}`);
+  const eventDot = document.getElementById(`event-dot-${selectedDate}`);
+
+  if (calendarDateCell && eventDot) {
+      if (events[selectedDate] && events[selectedDate].length > 0) {
+          calendarDateCell.classList.add('has-events');
+          eventDot.style.display = 'inline-block'; // Show event dot
+      } else {
+          calendarDateCell.classList.remove('has-events');
+          eventDot.style.display = 'none'; // Hide event dot
       }
   }
+}
+
+
 
   // Function to format date in a readable format (e.g., April 15, 2024)
   function formatDate(dateString) {
