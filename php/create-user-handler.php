@@ -1,0 +1,36 @@
+<?php
+session_start();
+date_default_timezone_set("America/Chicago");
+
+$userID = rand(10000000,99999999);
+$firstName = $_POST['firstName'];
+$lastName = $_POST['lastName'];
+$phone = $_POST['phone'];
+$email = $_POST['email'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$address = $_POST['address'];
+$apartment = $_POST['apartment'];
+$city = $_POST['city'];
+$state = $_POST['state'];
+$zipCode = $_POST['zipCode'];
+
+//Database connection
+
+$conn = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+if($conn->connect_error) {
+    die('Connection Failed : '.$conn->connect_error);
+}
+else {
+    $stmt = $conn->prepare("INSERT INTO user(userID, firstName, lastName, phone, email, username, password, address, apartment, city, state, zipCode)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");	
+        $stmt ->bind_param("isssssssissi", $userID, $firstName, $lastName, $phone, $email, $username, $password, $address, $apartment, $city, $state, $zipCode);
+        $stmt ->execute();
+        echo "registration successful";
+        $stmt->close();
+        $conn->close();
+}
+    
+
+
+?>
