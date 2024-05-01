@@ -1,233 +1,195 @@
-const daysContainer = document.querySelector(".days"),
-  nextBtn = document.querySelector(".next-btn"),
-  prevBtn = document.querySelector(".prev-btn"),
-  month = document.querySelector(".month"),
-  todayBtn = document.querySelector(".today-btn");
-  dateClicked = document.querySelector(".days");
+document.addEventListener('DOMContentLoaded', function() {
+  const monthYearElement = document.getElementById('month-year');
+  const calendarDatesElement = document.getElementById('calendar-dates');
+  const agendaListElement = document.getElementById('agenda-list');
+  const upcomingEventsElement = document.getElementById('upcoming-events');
 
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+  // Sample event data (replace this with your actual event data)
+  const events = {
+      '2024-04-15': ['Event 1', 'Event 2'],
+      '2024-04-20': ['Event 3'],
+      '2024-04-25': ['Event 4'],
+      '2024-05-01': ['Event 5'],
+      '2025-04-22': ['Event 6']
+  };
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let currentMonth; // Track current displayed month
+  let currentYear; // Track current displayed year
 
-// get current date
-const date = new Date();
+  // Function to render calendar based on month and year
+  function renderCalendar(month, year) {
+      currentMonth = month;
+      currentYear = year;
 
-// get current month
-let currentMonth = date.getMonth();
+      // Clear existing calendar dates
+      calendarDatesElement.innerHTML = '';
 
-// get current year
-let currentYear = date.getFullYear();
+      // Set the month and year in the title
+      monthYearElement.textContent = `${getMonthName(month)} ${year}`;
 
-// function to render days
-function renderCalendar() {
-  // get prev month current month and next month days
-  date.setDate(1);
-  const firstDay = new Date(currentYear, currentMonth, 1);
-  const lastDay = new Date(currentYear, currentMonth + 1, 0);
-  const lastDayIndex = lastDay.getDay();
-  const lastDayDate = lastDay.getDate();
-  const prevLastDay = new Date(currentYear, currentMonth, 0);
-  const prevLastDayDate = prevLastDay.getDate();
-  const nextDays = 7 - lastDayIndex - 1;
+      // Get the first day of the month
+      const firstDay = new Date(year, month - 1, 1);
+      const startingDayOfWeek = firstDay.getDay();
 
-  // update current year and month in header
-  month.innerHTML = `${months[currentMonth]} ${currentYear}`;
+      // Get the number of days in the month
+      const daysInMonth = new Date(year, month, 0).getDate();
 
-  // update days html
-  let days = "";
+      // Create calendar rows and cells
+      let date = 1;
+      for (let i = 0; i < 6; i++) { // 6 weeks maximum to cover all possibilities
+          const row = document.createElement('tr');
 
-  // prev days html
-  for (let x = firstDay.getDay(); x > 0; x--) {
-    days += `<div class="day prev">${prevLastDayDate - x + 1}</div>`;
+          // Create cells for each day of the week
+          for (let j = 0; j < 7; j++) {
+              const cell = document.createElement('td');
+              if (i === 0 && j < startingDayOfWeek) {
+                  // Empty cells before the start of the month
+                  cell.textContent = '';
+              } else if (date > daysInMonth) {
+                  // Stop creating cells once all days of the month are added
+                  break;
+              } else {
+                  // Display the date
+                  cell.textContent = date;
+                  cell.classList.add('calendar-day'); // Add a class for styling and event handling
+                  const currentDate = `${year}-${padZero(month)}-${padZero(date)}`;
+                  cell.dataset.date = currentDate; // Store the date in dataset
+                  date++;
+
+                  // Check if the current date has events
+                  if (events[currentDate]) {
+                      // Add a dot or marker to indicate events
+                      const dot = document.createElement('span');
+                      dot.classList.add('event-dot');
+                      cell.appendChild(dot);
+                  }
+
+                  // Add click event listener to each calendar day
+                  cell.addEventListener('click', handleDayClick);
+              }
+              row.appendChild(cell);
+          }
+
+          calendarDatesElement.appendChild(row);
+
+          // Stop creating rows if we've added all days of the month
+          if (date > daysInMonth) {
+              break;
+          }
+      }
+
+      // Display upcoming events after rendering calendar
+      displayUpcomingEvents();
   }
 
-  // current month days
-  for (let i = 1; i <= lastDayDate; i++) {
-    // check if its today then add today class
-    if (
-      i === new Date().getDate() &&
-      currentMonth === new Date().getMonth() &&
-      currentYear === new Date().getFullYear()
-    ) {
-      // if date month year matches add today
-      days += `<div class="day today">${i}</div>`;
-    } else {
-      //else dont add today
-      days += `<div class="day ">${i}</div>`;
+  // Helper function to get month name from month number (1-based index)
+  function getMonthName(month) {
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      return months[month - 1];
+  }
+
+  // Helper function to pad single digit number with leading zero (e.g., 1 => '01')
+  function padZero(num) {
+      return num.toString().padStart(2, '0');
+  }
+
+  // Event handler for day click
+  function handleDayClick(event) {
+      const selectedDate = event.target.dataset.date;
+      if (selectedDate) {
+          displayAgenda(selectedDate);
+      }
+  }
+
+  // Function to display agenda for the selected date
+  function displayAgenda(selectedDate) {
+      // Clear existing agenda items
+      agendaListElement.innerHTML = '';
+
+      // Display selected date above agenda items
+      const selectedDateElement = document.createElement('p');
+      selectedDateElement.textContent = `${formatDate(selectedDate)}`;
+      agendaListElement.appendChild(selectedDateElement);
+
+      // Check if there are events for the selected date
+      if (events[selectedDate]) {
+          events[selectedDate].forEach(event => {
+              const listItem = document.createElement('li');
+              listItem.textContent = event;
+              agendaListElement.appendChild(listItem);
+          });
+      } else {
+          const listItem = document.createElement('li');
+          listItem.textContent = 'No events for this date';
+          agendaListElement.appendChild(listItem);
+      }
+  }
+
+  // Function to format date in a readable format (e.g., April 15, 2024)
+  function formatDate(dateString) {
+      const [year, month, day] = dateString.split('-');
+      const monthName = getMonthName(parseInt(month));
+      return `${monthName} ${parseInt(day)}, ${year}`;
+  }
+
+  // Function to display upcoming events for the next two weeks
+  function displayUpcomingEvents() {
+    upcomingEventsElement.innerHTML = ''; // Clear existing content
+
+    const today = new Date();
+    const endDate = new Date(today.getTime() + (14 * 24 * 60 * 60 * 1000)); // 14 days (2 weeks) from today
+
+    let hasEvents = false;
+
+    // Loop through each day within the next two weeks
+    for (let date = new Date(today); date <= endDate; date.setDate(date.getDate() + 1)) {
+        const currentDate = `${date.getFullYear()}-${padZero(date.getMonth() + 1)}-${padZero(date.getDate())}`;
+        
+        if (events[currentDate]) {
+            events[currentDate].forEach(event => {
+                const eventDateString = formatDate(currentDate); // Format event date using formatDate function
+                const listItem = document.createElement('li');
+                listItem.textContent = `${eventDateString}: ${event}`;
+                upcomingEventsElement.appendChild(listItem);
+            });
+            hasEvents = true;
+        }
+    }
+
+    // Display message if no events within the next two weeks
+    if (!hasEvents) {
+        upcomingEventsElement.textContent = 'Agenda clear for the next two weeks!';
     }
   }
 
-  // next MOnth days
-  for (let j = 1; j <= nextDays; j++) {
-    days += `<div class="day next">${j}</div>`;
-  }
-
-  // run this function with every calendar render
-  hideTodayBtn();
-  daysContainer.innerHTML = days;
-}
-
-renderCalendar();
-
-nextBtn.addEventListener("click", () => {
-  // increase current month by one
-  currentMonth++;
-  if (currentMonth > 11) {
-    // if month gets greater that 11 make it 0 and increase year by one
-    currentMonth = 0;
-    currentYear++;
-  }
-  // rerender calendar
-  renderCalendar();
-});
-
-// prev monyh btn
-prevBtn.addEventListener("click", () => {
-  // increase by one
-  currentMonth--;
-  // check if let than 0 then make it 11 and deacrease year
-  if (currentMonth < 0) {
-    currentMonth = 11;
-    currentYear--;
-  }
-  renderCalendar();
-});
-
-// go to today
-todayBtn.addEventListener("click", () => {
-  // set month and year to current
-  currentMonth = date.getMonth();
-  currentYear = date.getFullYear();
-  // rerender calendar
-  renderCalendar();
-});
-
-dateClicked.addEventListener("click", () => {
-
-
-});
-
-// lets hide today btn if its already current month and vice versa
-
-function hideTodayBtn() {
-  if (
-    currentMonth === new Date().getMonth() &&
-    currentYear === new Date().getFullYear()
-  ) {
-    todayBtn.style.display = "none";
-  } else {
-    todayBtn.style.display = "flex";
-  }
-}
-
-// Update the event listener for date clicks
-daysContainer.addEventListener("click", (event) => {
-  const clickedDay = event.target;
-
-  // Check if the clicked element is a day in the calendar
-  if (clickedDay.classList.contains("day")) {
-      const dayNumber = parseInt(clickedDay.textContent);
-
-      // Determine the type of day (prev, current, next)
-      let dayType;
-      if (clickedDay.classList.contains("prev")) {
-          dayType = "previous";
-      } else if (clickedDay.classList.contains("today")) {
-          dayType = "current";
-      } else if (clickedDay.classList.contains("next")) {
-          dayType = "next";
-      } else {
-          dayType = "current";
+  // Function to handle navigation to previous month
+  function showPreviousMonth() {
+      currentMonth--;
+      if (currentMonth < 1) {
+          currentMonth = 12;
+          currentYear--;
       }
-
-      // Display the date information in the alert
-      const clickedDate = new Date(currentYear, currentMonth, dayNumber);
-      const formattedDate = `${months[currentMonth]} ${dayNumber}, ${currentYear}`;
-      const dayOfWeek = days[clickedDate.getDay()];
-
-      alert(`You clicked on: ${formattedDate} (${dayOfWeek}), which is a ${dayType} day.`);
+      renderCalendar(currentMonth, currentYear);
   }
-});
 
-
-document.addEventListener('DOMContentLoaded', function() {
-  const addEventBtn = document.getElementById('addEventBtn');
-  const eventInputs = document.getElementById('eventInputs');
-  const eventsList = document.getElementById('eventsList');
-
-  addEventBtn.addEventListener('click', function() {
-      // Toggle visibility of eventInputs div
-      if (eventInputs.style.display === 'none') {
-          eventInputs.style.display = 'block';
-      } else {
-          eventInputs.style.display = 'none';
+  // Function to handle navigation to next month
+  function showNextMonth() {
+      currentMonth++;
+      if (currentMonth > 12) {
+          currentMonth = 1;
+          currentYear++;
       }
-  });
-
-  const saveEventBtn = document.getElementById('saveEventBtn');
-
-  saveEventBtn.addEventListener('click', function() {
-      // Fetch input values
-      const eventName = document.querySelector('#eventInputs input:nth-of-type(1)').value;
-      const eventDate = document.querySelector('#eventInputs input:nth-of-type(2)').value;
-      const location = document.querySelector('#eventInputs input:nth-of-type(3)').value;
-
-      // Create new event object
-      const event = {
-          name: eventName,
-          date: eventDate,
-          location: location
-      };
-
-      // Add event to events list
-      addEventToList(event);
-
-      // Clear input fields
-      clearInputs();
-  });
-
-  function addEventToList(event) {
-     eventInputs.style.display = 'none';
-      // Create new list item for the event
-      const eventElement = document.createElement('div.daysAgenda');
-      eventElement.innerHTML = 
-      //<div class="day">Event 1<button class="delete-btn">-</button></div>
-      `
-        <div class="day"><button class="delete-btn">-</button> &nbsp; Event: ${event.name} <br> &nbsp;Class: ${event.location}
-         
-      `;
-
-      // Append event element to eventsList
-      eventsList.appendChild(eventElement);
-
-      // Add event listener to delete button
-      const deleteBtn = eventElement.querySelector('.delete-btn');
-      deleteBtn.addEventListener('click', function() {
-          // Remove the event element from the list when delete button is clicked
-          eventsList.removeChild(eventElement);
-      });
+      renderCalendar(currentMonth, currentYear);
   }
 
-  function clearInputs() {
-      // Clear input fields after saving event
-      document.querySelector('#eventInputs input:nth-of-type(1)').value = '';
-      document.querySelector('#eventInputs input:nth-of-type(2)').value = '';
-      document.querySelector('#eventInputs input:nth-of-type(3)').value = '';
-  }
+  // Initial render for current month and year
+  const today = new Date();
+  renderCalendar(today.getMonth() + 1, today.getFullYear());
+
+  // Add event listeners to navigation buttons
+  const prevMonthButton = document.getElementById('prev-month-button');
+  const nextMonthButton = document.getElementById('next-month-button');
+
+  prevMonthButton.addEventListener('click', showPreviousMonth);
+  nextMonthButton.addEventListener('click', showNextMonth);
 });
-
-//
-//month.innerHTML = Agenda - `${months[currentMonth]} ${months[currentDay]} ${currentYear}`;
