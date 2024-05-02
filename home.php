@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <?php include "php/head.php"; exec("php php/head.php");?>
-  <link rel = "icon" type= "assets/CAP_LOGO.png" href=/assets/CAP_LOGO.png>
   <style>
     html, body {
     padding:0;
