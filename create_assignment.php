@@ -3,17 +3,12 @@
 <head><?php include "php/head.php"; exec("php php/head.php");?></head>
 <body>
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
-
   <main class="container-fluid">
-    
 
     <form class="needs-validation" action="php/create-assignment-handler.php" method="post" enctype="multipart/form-data"  novalidate>
-
       <h1 class = "text-center">Create Assignment</h1>
 
-
       <hr></hr>
-
       <div class="row justify-content-center">
         <div class="col-sm-2">
           <label for="validationTooltip01">Assignment Title</label>
@@ -22,19 +17,16 @@
             Looks good!
           </div>
         </div>
-
         <div class="col-sm-2">
           <label for="start">Due Date:</label>
           <?php
           $aYearFromNow = date_format(date_add(date_create(date("Y-m-d")),date_interval_create_from_date_string("365 days")), "Y/m/d");
-          
+
           echo "<input type='date' class='form-control' id='dueDate' name='dueDate' value='" . date("Y-m-d") . "'  min='" . date("Y-m-d") . "' max='" . $aYearFromNow . "' />";
           ?>
         </div>
 
-
         <hr></hr>
-
         <div class="row justify-content-center">
           <section class="file-submission">
             <h2>Attach Assignment</h2>
@@ -50,13 +42,12 @@
             </div>
           </section>
         </div>
-        
+
         <div class="text-center">
           <button class="btn btn-primary" type="submit">Submit form</button>
         </div>
       </form>
     </main>
-
     <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
   </body>
   </html>

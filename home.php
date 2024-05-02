@@ -21,12 +21,12 @@
         echo $user[0]['firstName'] . " " . $user[0]['lastName'];
         ?>
       </div>
-      
+
       <div class="tool-bar">
         <a class="tool-button" role="button" href="calculator.php">Planner <i class="bi bi-calculator"></i></a>
         <a class="tool-button" role="button" href="planner.php">Calender <i class="bi bi-calendar3"></i></a>
       </div>
-      
+
       <div id="card-div">
         <a href="">
           <div class="card">
@@ -93,6 +93,7 @@
             </div>
           </div>
         </a>
+        
       </div>
     </main>
     <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>

@@ -5,7 +5,7 @@
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
   
   <main class="container-fluid">
-    
+
 
     <form class="needs-validation" action="php/create-course-handler.php" method="post" novalidate>
 
@@ -55,12 +55,10 @@
         </div>
 
 
-        
+
       </div>
 
       <hr></hr>
-      
-
       <div class="row justify-content-center">
 
         <div class="col-sm-2">
@@ -102,18 +100,12 @@
             ?>
           </select>
         </div>
-
-
       </div>
-
       <hr></hr>
-
-      
-
     </div>
 
     
-    
+
     <div class="text-center">
       <button class="btn btn-primary" type="submit">Submit form</button>
     </div>
