@@ -11,16 +11,16 @@ if($conn->connect_error) {
     die('Connection Failed : '.$conn->connect_error);
 }
 else {
-
+    //turn username to id
     $query = "SELECT userID FROM users WHERE username = '" . $username . "'";
+    echo $query;
     $result = mysqli_query($conn, $query);
     $result = $result -> fetch_all(MYSQLI_ASSOC);
     $userID = $result[0]['userID'];
-    
-    $stmt = $conn->prepare("INSERT INTO takes(courseID, userID)
-        VALUES (?, ?)");	
-    $stmt ->bind_param("ii", $courseID, $userID);
-    $stmt ->execute();
+
+    $query = "DELETE FROM takes WHERE userID='" . $userID . "'";
+    mysqli_query($conn, $query);
+    header("Location: ../search_course.php");
 }
 ?>
 

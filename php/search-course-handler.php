@@ -47,7 +47,7 @@ else {
         if($moreThanOne > 0) {
             $query .= " AND";
         }
-        $query .= " courses.instructor='" . $_POST['instructor'] . "'";
+        $query .= " courses.instructorID='" . $_POST['instructor'] . "'";
         $moreThanOne++;
     }
     if($query == $original) {
@@ -59,7 +59,7 @@ else {
 
         session_start();
         $_SESSION['result'] = $result -> fetch_all(MYSQLI_ASSOC);
-        header("Location: ../search_course_result.php");
+        header("Location: ../search_course.php");
     }
 
 }

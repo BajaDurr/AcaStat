@@ -21,6 +21,7 @@ else {
         VALUES (?, ?)");	
     $stmt ->bind_param("ii", $courseID, $userID);
     $stmt ->execute();
+    header("Location: ../search_course.php");
 }
 ?>
 
