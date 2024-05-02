@@ -30,8 +30,7 @@
     margin-right: 5%;
 }
 
-.register-button button{
-    
+.register-button a{
         border-style: solid;
         border-width: 1px;
         border-color: rgb(224, 224, 224);
@@ -40,6 +39,11 @@
         padding: .5em 1em .5em 1em;
         font-weight: 700;
         font-size: x-large;
+        text-decoration: none;
   
 }
 
+#registered {
+    background-color: rgb(184, 184, 184);
+    color:rgb(95, 95, 95);
+}

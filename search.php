@@ -2,15 +2,19 @@
 <html lang="en">
 <head><?php include "php/head.php"; exec("php php/head.php");?></head>
 <body>
-  <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
-  <link rel="stylesheet" href="css/search-course.css">
-  <link rel="stylesheet" href="css/course.css">
+  <header><?php include "php/navbar.php"; exec("php php/navbar.php");?>
+    <link rel="stylesheet" href="css/search-course.css">
+    <link rel="stylesheet" href="css/course.css">
+  </header>
+    
+
   <main>
     <!--For icons: https://icons.getbootstrap.com/-->
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
 
     <form class="needs-validation" action="php/search-course-handler.php" method="post" novalidate>
 
+      <br>
       <h1 class = "text-center">Search Catalogue</h1>
 
       <hr></hr>
@@ -91,58 +95,18 @@
 
       <hr></hr>
       <div class="text-center">
-        <button class="btn btn-primary" type="submit">Search</button>
+        <button class="btn btn-primary" type="submit">Submit form</button>
       </div>
     </form>
 
     <hr></hr>
 
-   
+  <form>
+    <div class="course-card">
+      <h1>Subject Code: Course Title</h1>
+      <p>Semester Year</p>
+    </div>
 
-    <?php
-      ini_set('display_errors', 0);
-      if($_SESSION["result"] != "") {
-        foreach($_SESSION["result"] as $result) {
-          echo 
-          //"<form class='needs-validation' action='php/register-to-course.php?user=" . $_SESSION["username"] . "&courseID=". $result["courseID"] ."' method='get'>
-            "<div class='course-card'>
-              <div>   
-                <h1>" . $result["subject"] . ": " . $result["courseTitle"] . "</h1>
-                <p>" . $result["semester"] . " " . $result["year"] . ", " . $result["firstName"] . " " . $result["lastName"] . "</p>
-              </div>";
-              
-              //change username to userID
-              $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
-              $return = mysqli_query($conn, $query);
-              $return = $return -> fetch_all(MYSQLI_ASSOC);
-              $userID = $return[0]['userID'];
-
-              //where logged in user and course exists
-              $query = "SELECT userID, courseID FROM takes WHERE userID = '" . $userID . "' AND courseID='" . $result["courseID"] . "'";
-              $return = mysqli_query($conn, $query);
-              $return = $return -> fetch_all(MYSQLI_ASSOC);
-  
-              if(count($return) == 0) {
-                      echo 
-                      "<div class='register-button'>
-                        <a id='register' href='php/register-to-course.php?user=" . $_SESSION["username"] . "&courseID=". $result["courseID"] ."'>Register</a>
-                      </div>
-                    </div>
-                  </form><br>";
-              }
-              else {
-                echo 
-                      "<div class='register-button'>
-                        <a id='registered' href='php/unregister-to-course.php?user=" . $_SESSION["username"] . "&courseID=". $result["courseID"] ."'>Registered</a>
-                      </div>
-                    </div>
-                  </form><br>";
-              }
-        }
-      }
-    ?>
-    
-  </form>
     <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
   </body>
-  </html>
+</html>
