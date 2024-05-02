@@ -6,6 +6,7 @@
   <main class="container-fluid">
 
     <form class="needs-validation" action="php/create-assignment-handler.php" method="post" enctype="multipart/form-data"  novalidate>
+      <br>
       <h1 class = "text-center">Create Assignment</h1>
 
       <hr></hr>

@@ -10,6 +10,7 @@
 
     <form class="needs-validation" action="php/create-course-handler.php" method="post" novalidate>
 
+      <br>
       <h1 class = "text-center">Search Catalogue</h1>
 
       <hr></hr>

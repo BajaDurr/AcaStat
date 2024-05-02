@@ -12,7 +12,7 @@ echo '<li class="nav-item">';
 echo '<a class="nav-link active" aria-current="page" href="home.php">Home</a>';
 echo '</li>';
 echo '<li class="nav-item">';
-echo '<a class="nav-link active" aria-current="page" href="#">Search Catalogue</a>';
+echo '<a class="nav-link active" aria-current="page" href="search_course.php">Search Catalogue</a>';
 echo '</li>';
 echo '<li class="nav-item dropdown">';
 echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Institution</a>';
