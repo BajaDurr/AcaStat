@@ -1,0 +1,19 @@
+.file-submission {
+    width: 50%;
+    margin: auto;
+}
+
+footer {
+    bottom: 0px;
+    width: 100%;
+}
+
+hr {
+    color: white;
+}
+
+.tool-button {
+    text-decoration: none;
+    border-style: none;
+}
+

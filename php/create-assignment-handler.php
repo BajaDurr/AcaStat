@@ -3,10 +3,10 @@ session_start();
 date_default_timezone_set("America/Chicago");
 
 $assignmentID = rand(1000,9999);
+$courseID = $_GET['courseID'];
 $title = $_POST['title'];
 $submissionDate = date("Y-m-d");
 $dueDate = $_POST['dueDate'];
-
 $fileName = basename($_FILES['myFile']["name"]);
 $notes = $_POST['notes'];
 
@@ -55,9 +55,9 @@ if($conn->connect_error) {
     die('Connection Failed : '.$conn->connect_error);
 }
 else {
-    $stmt = $conn->prepare("INSERT INTO assignments(assignmentID, title, submissionDate, dueDate, fileName, notes)
-        VALUES (?, ?, ?, ?, ?, ?)");	
-    $stmt ->bind_param("isssss", $assignmentID, $title, $submissionDate, $dueDate, $fileName, $notes);
+    $stmt = $conn->prepare("INSERT INTO assignments(assignmentID, courseID, title, submissionDate, dueDate, fileName, notes)
+        VALUES (?, ?, ?, ?, ?, ?, ?)");	
+    $stmt ->bind_param("iisssss", $assignmentID, $coruse, $title, $submissionDate, $dueDate, $fileName, $notes);
     $stmt ->execute();
 
     echo "creation successful";

@@ -139,7 +139,7 @@ footer{
       </div>
 
       <div class="tool-bar">
-        <a class="tool-button" role="button" href="calculator.php">Planner <i class="bi bi-calculator"></i></a>
+        <a class="tool-button" role="button" href="calculator.php">Calculator <i class="bi bi-calculator"></i></a>
         <a class="tool-button" role="button" href="planner.php">Calendar <i class="bi bi-calendar3"></i></a>
       </div>
 

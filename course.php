@@ -32,9 +32,25 @@
     <!--Seconday Nav Bar-->
     <div class="tool-bar">
       <button class="tool-button" href="">Material</button>
-      <button class="tool-button" href="">Assignments</button>
+      <?php
+
+          //check if instructor
+          $query = "SELECT userID FROM instructors WHERE userID= '" . $userID . "'";
+          $check = mysqli_query($conn, $query);
+          $check = $check -> fetch_all(MYSQLI_ASSOC);
+
+          if (count($check) == 0) {
+            $identifier = "_student";
+          }
+          else {
+            $identifier = "_instructor";
+          }
+        
+        echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Assignments</a>";
+      ?>
       <button class="tool-button" href="">Grades</button>
     </div>
+    
 
     <!--Primary Page Content-->
     <div class="content">
