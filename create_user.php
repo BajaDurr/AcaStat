@@ -24,16 +24,16 @@
         <label class="btn btn-outline-primary" for="option3">Admin</label>
       </div>
 
-    <div class = "text-center"> 
-      
-      <input type="radio" class="form-check-input" name="exampleRadios" id="option1" autocomplete="off" checked>
-      <label class="form-check-label" for="option1">One</label>
+      <div class = "text-center"> 
+        
+        <input type="radio" class="form-check-input" name="exampleRadios" id="option1" autocomplete="off" checked>
+        <label class="form-check-label" for="option1">One</label>
 
-      <input type="radio" class="form-check-input" name="exampleRadios" id="option2" autocomplete="off">
-      <label class="form-check-label" for="option2">Many</label>
-    </div>
+        <input type="radio" class="form-check-input" name="exampleRadios" id="option2" autocomplete="off">
+        <label class="form-check-label" for="option2">Many</label>
+      </div>
 
-    <hr></hr>
+      <hr></hr>
 
       <div class="row justify-content-center">
 

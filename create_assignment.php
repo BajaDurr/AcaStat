@@ -24,39 +24,39 @@
         </div>
 
         <div class="col-sm-2">
-            <label for="start">Due Date:</label>
-            <?php
-                $aYearFromNow = date_format(date_add(date_create(date("Y-m-d")),date_interval_create_from_date_string("365 days")), "Y/m/d");
-                
-                echo "<input type='date' class='form-control' id='dueDate' name='dueDate' value='" . date("Y-m-d") . "'  min='" . date("Y-m-d") . "' max='" . $aYearFromNow . "' />";
-            ?>
+          <label for="start">Due Date:</label>
+          <?php
+          $aYearFromNow = date_format(date_add(date_create(date("Y-m-d")),date_interval_create_from_date_string("365 days")), "Y/m/d");
+          
+          echo "<input type='date' class='form-control' id='dueDate' name='dueDate' value='" . date("Y-m-d") . "'  min='" . date("Y-m-d") . "' max='" . $aYearFromNow . "' />";
+          ?>
         </div>
 
 
-      <hr></hr>
+        <hr></hr>
 
-      <div class="row justify-content-center">
-        <section class="file-submission">
-        <h2>Attach Assignment</h2>
+        <div class="row justify-content-center">
+          <section class="file-submission">
+            <h2>Attach Assignment</h2>
             <!-- <input type="hidden" name ="MAX FILE SIZE" value = "1073741824"> -->
             <div class="mb-3">
-                <label for="myfile" class="form-label">Upload File:</label>
-                <input type="file" class="form-control" id="file" name="myFile">
-                <small id="fileHelp" class="form-text text-muted">Accepted file formats: PDF, DOC, DOCX, ZIP, txt</small>
+              <label for="myfile" class="form-label">Upload File:</label>
+              <input type="file" class="form-control" id="file" name="myFile">
+              <small id="fileHelp" class="form-text text-muted">Accepted file formats: PDF, DOC, DOCX, ZIP, txt</small>
             </div>
             <div class="mb-3">
-                <label for="notes" class="form-label">Notes:</label>
-                <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Add any additional notes or comments"></textarea>
+              <label for="notes" class="form-label">Notes:</label>
+              <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Add any additional notes or comments"></textarea>
             </div>
-        </section>
-      </div>
-      
-      <div class="text-center">
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </div>
-    </form>
-  </main>
+          </section>
+        </div>
+        
+        <div class="text-center">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+    </main>
 
-  <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
-</body>
-</html>
+    <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+  </body>
+  </html>

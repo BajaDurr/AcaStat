@@ -41,7 +41,7 @@
         </div>
 
         <!--Mini class list-->
-          
+        
         <p class="class-list-header">Class List</p>
         <div class="vertical-menu">
           <a href="">Lilian Mejia</a>

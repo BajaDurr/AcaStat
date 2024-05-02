@@ -55,7 +55,7 @@
         </div>
 
 
-  
+        
       </div>
 
       <hr></hr>
@@ -90,16 +90,16 @@
           <select class="form-control" id="instructor" name="instructor">
             <option value="">N/A</option>
             <?php
-                $sql = "SELECT firstName, lastName, instructors.userID FROM instructors INNER JOIN users ON users.userID = instructors.userID ORDER BY lastName";
+            $sql = "SELECT firstName, lastName, instructors.userID FROM instructors INNER JOIN users ON users.userID = instructors.userID ORDER BY lastName";
 
-                $result = mysqli_query($conn, $sql);
+            $result = mysqli_query($conn, $sql);
 
-                $instructors = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            $instructors = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                foreach($instructors as $row) {
-                  echo "<option value='" . $row["userID"] . "'>" . $row["lastName"] . ", " . $row["firstName"] . "</option>";
-                } 
-              ?>
+            foreach($instructors as $row) {
+              echo "<option value='" . $row["userID"] . "'>" . $row["lastName"] . ", " . $row["firstName"] . "</option>";
+            } 
+            ?>
           </select>
         </div>
 
@@ -110,16 +110,16 @@
 
       
 
-      </div>
+    </div>
 
     
-      
-      <div class="text-center">
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </div>
-    </form>
-  </main>
+    
+    <div class="text-center">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+  </form>
+</main>
 
-  <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+<footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
 </body>
 </html>
