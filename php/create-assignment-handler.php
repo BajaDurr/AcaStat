@@ -22,7 +22,7 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     $uploadOk = 0;
-  }
+}
 
 // Check file size
 if ($_FILES["myFile"]["size"] > 500000) {
@@ -40,13 +40,13 @@ if($imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
   // if everything is ok, try to upload file
-  } else {
+} else {
     if (move_uploaded_file($_FILES["myFile"]["tmp_name"], $target_file)) {
       echo "The file ". htmlspecialchars( basename( $_FILES["myFile"]["name"])). " has been uploaded.";
-    } else {
+  } else {
       echo "Sorry, there was an error uploading your file.";
-    }
   }
+}
 
 //Database connection
 
@@ -57,12 +57,12 @@ if($conn->connect_error) {
 else {
     $stmt = $conn->prepare("INSERT INTO assignments(assignmentID, title, submissionDate, dueDate, fileName, notes)
         VALUES (?, ?, ?, ?, ?, ?)");	
-        $stmt ->bind_param("isssss", $assignmentID, $title, $submissionDate, $dueDate, $fileName, $notes);
-        $stmt ->execute();
+    $stmt ->bind_param("isssss", $assignmentID, $title, $submissionDate, $dueDate, $fileName, $notes);
+    $stmt ->execute();
 
-        echo "creation successful";
-        $stmt->close();
-        $conn->close();
+    echo "creation successful";
+    $stmt->close();
+    $conn->close();
 }
 
 ?>
