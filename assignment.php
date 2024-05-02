@@ -4,7 +4,7 @@
 <body>
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
-  <main class="container">
+  <main class="container-fluid">
     <br>
     <!--https://getbootstrap.com/docs/5.0/forms/form-control/-->
     <div class="mb-3">

@@ -96,12 +96,12 @@
 
     <hr></hr>
 
-  <form>
-    <div class="course-card">
-      <h1>Subject Code: Course Title</h1>
-      <p>Semester Year</p>
-    </div>
+    <form>
+      <div class="course-card">
+        <h1>Subject Code: Course Title</h1>
+        <p>Semester Year</p>
+      </div>
 
     <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
   </body>
-  </html>
+</html>
