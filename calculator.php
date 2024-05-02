@@ -4,7 +4,7 @@
 <body>
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
-  <link rel="stylesheet" href="css/calculator.css"/>
+  <link rel="stylesheet" href="css/calculator.css"/> 
 
   <!-- Added classes -->
   <main class="container">

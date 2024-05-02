@@ -2,15 +2,19 @@
 <html lang="en">
 <head><?php include "php/head.php"; exec("php php/head.php");?></head>
 <body>
-  <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
-  <link rel="stylesheet" href="css/search-course.css">
-  <link rel="stylesheet" href="css/course.css">
+  <header><?php include "php/navbar.php"; exec("php php/navbar.php");?>
+    <link rel="stylesheet" href="css/search-course.css">
+    <link rel="stylesheet" href="css/course.css">
+  </header>
+    
+
   <main>
     <!--For icons: https://icons.getbootstrap.com/-->
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
 
     <form class="needs-validation" action="php/search-course-handler.php" method="post" novalidate>
 
+      <br>
       <h1 class = "text-center">Search Catalogue</h1>
 
       <hr></hr>
@@ -99,16 +103,10 @@
 
   <form>
     <div class="course-card">
-      <div>   
-        <h1>Subject Code: Course Title</h1>
-        <p>Semester Year, firstName lastName</p>
-      </div>
-      <div class="register-button">
-        <button>Register</button>
-      </div>
+      <h1>Subject Code: Course Title</h1>
+      <p>Semester Year</p>
     </div>
-    
-  </form>
+
     <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
   </body>
-  </html>
+</html>

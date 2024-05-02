@@ -6,9 +6,8 @@
 
   <main class="container-fluid">
     
-
     <form class="needs-validation" action="php/create-user-handler.php" method="post" novalidate>
-
+      <br>
       <h1 class = "text-center">Create New User</h1>
 
       <div class = "text-center"> 

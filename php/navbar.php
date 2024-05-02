@@ -7,12 +7,12 @@ echo '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" dat
 echo '<span class="navbar-toggler-icon"></span>';
 echo '</button>';
 echo '<div class="collapse navbar-collapse" id="navbarNavDropdown">';
-echo '<ul class="navbar-nav">';
+echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">';
 echo '<li class="nav-item">';
 echo '<a class="nav-link active" aria-current="page" href="home.php">Home</a>';
 echo '</li>';
 echo '<li class="nav-item">';
-echo '<a class="nav-link active" aria-current="page" href="#">Search Catalogue</a>';
+echo '<a class="nav-link active" aria-current="page" href="search_course.php">Search Catalogue</a>';
 echo '</li>';
 echo '<li class="nav-item dropdown">';
 echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Institution</a>';
@@ -35,23 +35,29 @@ echo '<li><a class="dropdown-item" href="#">Separated link</a></li>';
 echo '</ul>';
 echo '</li>';
 
+// Admin Tools
 if ($conn) {
-	$uname = $_SESSION["username"];
-	$sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
-	$result = mysqli_query($conn, $sql);
-	if (mysqli_num_rows($result) == 1) {
-
-		echo '<li class="nav-item dropdown">';
-		echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Admin Tools</a>';
-		echo '<ul class="dropdown-menu">';
-		echo '<li><a class="dropdown-item" href="create_user.php">Create New User</a></li>';
-		echo '<li><a class="dropdown-item" href="create_course.php">Create New Course</a></li>';
-		echo '</ul>';
-		echo '</li>';
-	}
-
+    $uname = $_SESSION["username"];
+    $sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) == 1) {
+        echo '<li class="nav-item dropdown">';
+        echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Admin Tools</a>';
+        echo '<ul class="dropdown-menu">';
+        echo '<li><a class="dropdown-item" href="create_user.php">Create New User</a></li>';
+        echo '<li><a class="dropdown-item" href="create_course.php">Create New Course</a></li>';
+        echo '</ul>';
+        echo '</li>';
+    }
 }
+
 echo '</ul>';
+
+// Sign Out Button
+echo '<form action="logout.php" method="post" class="d-flex">';
+echo '<button type="submit" class="btn btn-link">Sign Out</button>';
+echo '</form>';
+
 echo '</div>';
 echo '</div>';
 echo '</nav>';

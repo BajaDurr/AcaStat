@@ -6,11 +6,11 @@
   
   <main class="container-fluid">
 
-
     <form class="needs-validation" action="php/create-course-handler.php" method="post" novalidate>
 
-      <h1 class = "text-center">Create New Course</h1>
+      <br>
 
+      <h1 class = "text-center">Create New Course</h1>
 
       <hr></hr>
 
@@ -53,8 +53,6 @@
             Looks good!
           </div>
         </div>
-
-
 
       </div>
 
@@ -103,8 +101,6 @@
       </div>
       <hr></hr>
     </div>
-
-    
 
     <div class="text-center">
       <button class="btn btn-primary" type="submit">Submit form</button>
