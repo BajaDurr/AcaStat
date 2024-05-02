@@ -35,22 +35,22 @@ echo '<li><a class="dropdown-item" href="#">Separated link</a></li>';
 echo '</ul>';
 echo '</li>';
 
-	if ($conn) {
-		$uname = $_SESSION["username"];
-		$sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
-		$result = mysqli_query($conn, $sql);
-		if (mysqli_num_rows($result) == 1) {
+if ($conn) {
+	$uname = $_SESSION["username"];
+	$sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
+	$result = mysqli_query($conn, $sql);
+	if (mysqli_num_rows($result) == 1) {
 
-			echo '<li class="nav-item dropdown">';
-			echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Admin Tools</a>';
-			echo '<ul class="dropdown-menu">';
-			echo '<li><a class="dropdown-item" href="create_user.php">Create New User</a></li>';
-			echo '<li><a class="dropdown-item" href="create_course.php">Create New Course</a></li>';
-			echo '</ul>';
-			echo '</li>';
-		}
-
+		echo '<li class="nav-item dropdown">';
+		echo '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Admin Tools</a>';
+		echo '<ul class="dropdown-menu">';
+		echo '<li><a class="dropdown-item" href="create_user.php">Create New User</a></li>';
+		echo '<li><a class="dropdown-item" href="create_course.php">Create New Course</a></li>';
+		echo '</ul>';
+		echo '</li>';
 	}
+
+}
 echo '</ul>';
 echo '</div>';
 echo '</div>';

@@ -4,7 +4,8 @@
 <body>
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
-  <main>
+  <main class="container">
+    <br>
     <!--https://getbootstrap.com/docs/5.0/forms/form-control/-->
     <div class="mb-3">
       <label for="formFile" class="form-label">Default file input example</label>
