@@ -91,22 +91,55 @@
 
       <hr></hr>
       <div class="text-center">
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit">Search</button>
       </div>
     </form>
 
     <hr></hr>
 
-  <form>
-    <div class="course-card">
-      <div>   
-        <h1>Subject Code: Course Title</h1>
-        <p>Semester Year, firstName lastName</p>
-      </div>
-      <div class="register-button">
-        <button>Register</button>
-      </div>
-    </div>
+   
+
+    <?php
+      if($_SESSION["result"] != "") {
+        foreach($_SESSION["result"] as $result) {
+          echo 
+          //"<form class='needs-validation' action='php/register-to-course.php?user=" . $_SESSION["username"] . "&courseID=". $result["courseID"] ."' method='get'>
+            "<div class='course-card'>
+              <div>   
+                <h1>" . $result["subject"] . ": " . $result["courseTitle"] . "</h1>
+                <p>" . $result["semester"] . " " . $result["year"] . ", " . $result["firstName"] . " " . $result["lastName"] . "</p>
+              </div>";
+              
+              //change username to userID
+              $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
+              $return = mysqli_query($conn, $query);
+              $return = $return -> fetch_all(MYSQLI_ASSOC);
+              $userID = $return[0]['userID'];
+
+              //where logged in user and course exists
+              $query = "SELECT userID, courseID FROM takes WHERE userID = '" . $userID . "' AND courseID='" . $result["courseID"] . "'";
+              $return = mysqli_query($conn, $query);
+              $return = $return -> fetch_all(MYSQLI_ASSOC);
+  
+              if(count($return) == 0) {
+                      echo 
+                      "<div class='register-button'>
+                        <a id='register' href='php/register-to-course.php?user=" . $_SESSION["username"] . "&courseID=". $result["courseID"] ."'>Register</a>
+                      </div>
+                    </div>
+                  </form><br>";
+              }
+              else {
+                echo 
+                      "<div class='register-button'>
+                        <a id='registered'" . $_SESSION["username"] . "&courseID=". $result["courseID"] ."'>Registered</a>
+                      </div>
+                    </div>
+                  </form><br>";
+              }
+        }
+      }
+    ?>
     
   </form>
     <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>

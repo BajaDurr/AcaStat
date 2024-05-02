@@ -14,7 +14,7 @@ if($conn->connect_error) {
     die('Connection Failed : '.$conn->connect_error);
 }
 else {
-    $query = "SELECT * FROM courses INNER JOIN users ON courses.instructorID = users.userID WHERE";
+    $query = $original = "SELECT * FROM courses INNER JOIN users ON courses.instructorID = users.userID WHERE";
     $result = "";
     $moreThanOne = 0;
 
@@ -50,11 +50,16 @@ else {
         $query .= " courses.instructor='" . $_POST['instructor'] . "'";
         $moreThanOne++;
     }
+    if($query == $original) {
+        header("Location: ../search_course_result.php"); 
+        $_SESSION['result'] = "";    
+    }
+    else {
+        $result = mysqli_query($conn, $query);
 
-    $result = mysqli_query($conn, $query);
-
-    foreach($result as $row) {
-        print_r($row);
+        session_start();
+        $_SESSION['result'] = $result -> fetch_all(MYSQLI_ASSOC);
+        header("Location: ../search_course_result.php");
     }
 
 }
