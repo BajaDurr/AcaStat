@@ -162,7 +162,7 @@ footer{
             echo
             "<a href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
               <div class='card'>
-                <img src='photos/card-photo-1.jpg' class='card-img-top' alt='...'>
+                <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
                 <div class='card-body'>
                   <p class='card-university'>Winona State University</p>
                   <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>

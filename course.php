@@ -22,6 +22,7 @@
       $return = $return[0];
     ?>
     <!--Home Page Banner-->
+    
     <div class="jumbotron" >
       <?php
         echo "<h1 id='banner-text' class='display-4'>" . $return["courseTitle"] . "</h1>"

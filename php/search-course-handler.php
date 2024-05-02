@@ -51,13 +51,14 @@ else {
         $moreThanOne++;
     }
     if($query == $original) {
-        header("Location: ../search_course_result.php"); 
-        $_SESSION['result'] = "";    
+        $query = "SELECT * FROM courses INNER JOIN users ON courses.instructorID = users.userID ORDER BY courses.subject, courses.courseTitle";
+        $result = mysqli_query($conn, $query);
+        $_SESSION['result'] = $result -> fetch_all(MYSQLI_ASSOC);    
+        header("Location: ../search_course.php"); 
     }
     else {
+        $query .= "ORDER BY courses.subject, courses.courseTitle";
         $result = mysqli_query($conn, $query);
-
-        session_start();
         $_SESSION['result'] = $result -> fetch_all(MYSQLI_ASSOC);
         header("Location: ../search_course.php");
     }

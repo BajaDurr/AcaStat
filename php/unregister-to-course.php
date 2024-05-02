@@ -18,7 +18,7 @@ else {
     $result = $result -> fetch_all(MYSQLI_ASSOC);
     $userID = $result[0]['userID'];
 
-    $query = "DELETE FROM takes WHERE userID='" . $userID . "'";
+    $query = "DELETE FROM takes WHERE userID='" . $userID . "' AND courseID='" . $courseID ."'";
     mysqli_query($conn, $query);
     header("Location: ../search_course.php");
 }

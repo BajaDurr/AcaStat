@@ -8,6 +8,7 @@ $code = $_POST['code'];
 $semester = $_POST['semester'];
 $year = $_POST['year'];
 $instructorID = $_POST['instructor'];
+$photoIndex = rand(1,10);
 
 //Database connection
 
@@ -16,14 +17,15 @@ if($conn->connect_error) {
     die('Connection Failed : '.$conn->connect_error);
 }
 else {
-    $stmt = $conn->prepare("INSERT INTO courses(courseID, courseTitle, subject, courseCode, semester, year, instructorID)
-        VALUES (?, ?, ?, ?, ?, ?, ?)");	
-    $stmt ->bind_param("issisii", $courseID, $courseTitle, $subject, $code, $semester, $year, $instructorID);
+    $stmt = $conn->prepare("INSERT INTO courses(courseID, courseTitle, subject, courseCode, semester, year, instructorID, photoIndex)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");	
+    $stmt ->bind_param("issisiii", $courseID, $courseTitle, $subject, $code, $semester, $year, $instructorID, $photoIndex);
     $stmt ->execute();
 
     echo "creation successful";
     $stmt->close();
     $conn->close();
+    header("Location: ../create_course.php");
 }
 
 

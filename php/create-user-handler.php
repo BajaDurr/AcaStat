@@ -44,6 +44,7 @@ else {
     echo "registration successful";
     $stmt->close();
     $conn->close();
+    header("Location: ../create_user.php");
 }
 
 
