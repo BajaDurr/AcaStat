@@ -8,17 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // Sample event data (replace this with your actual event data)
-  const events = {
-      '2024-04-15': ['(Test) Event 1', '(Test) Event 2'],
-      '2024-04-20': ['(Test) Event 3'],
-      '2024-04-25': ['(Test) Event 4'],
-      '2024-05-01': ['(Test) Event 5'],
-      '2025-04-22': ['(Test) Event 6']
-  };
-
   // Depending on course input course name into front ... (CS-101) "Example"
  
-
+  
 
   let currentMonth; // Track current displayed month
   let currentYear; // Track current displayed year

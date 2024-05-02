@@ -55,25 +55,83 @@
                                 </ul>
                             </li>  
                             <?php
-                              $con = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
+                                // Database connection parameters
+                                $hostname = 'database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com';
+                                $username = 'admin';
+                                $password = 'JtKRAYtPsXWUU8fYQNdf';
+                                $database = 'acastat-database';
 
-                              if ($con) {
-                                $uname = $_SESSION["username"];
+                                // Connect to the database
+                                $con = mysqli_connect($hostname, $username, $password, $database);
 
-                                $sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
-
-                                $result = mysqli_query($con, $sql);
-                                if (mysqli_num_rows($result) == 1) {
-                                  echo "<li class='nav-item dropdown'>";
-                                  echo "<a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='#' role='button' aria-expanded='false'>Admin Tools</a>";
-                                  echo "<ul class='dropdown-menu'>";
-                                  echo "<li><a class='dropdown-item' href='create_user.php'>Create New User</a></li>";
-                                  echo "<li><a class='dropdown-item' href='create_course.php'>Create New Course</a></li>";
-                                  echo "</ul>";
-                                  echo "</li>";
+                                // Check connection
+                                if (mysqli_connect_errno()) {
+                                    die("Connection failed: " . mysqli_connect_error());
                                 }
-                              } 
-                            ?>   
+
+                                // Query to select assignmentID, title, and dueDate from assignments table
+                                $assignmentQuery = "SELECT assignmentID, title, dueDate FROM assignments";
+
+                                // Perform query for assignments
+                                $assignmentResult = mysqli_query($con, $assignmentQuery);
+
+                                // Initialize an array to store events
+                                $events = [];
+
+                                // Check if query was successful
+                                if ($assignmentResult) {
+                                    // Fetch data from the result set (assignmentID, title, dueDate from assignments)
+                                    while ($row = mysqli_fetch_assoc($assignmentResult)) {
+                                        $title = $row['title'];
+                                        $dueDate = $row['dueDate'];
+
+                                        // Format dueDate to match JavaScript date format (YYYY-MM-DD)
+                                        $formattedDueDate = date('Y-m-d', strtotime($dueDate));
+
+                                        // Add the title to the events array using dueDate as key
+                                        if (!isset($events[$formattedDueDate])) {
+                                            $events[$formattedDueDate] = [];
+                                        }
+                                        $events[$formattedDueDate][] = $title;
+                                    }
+
+                                    // Free result set
+                                    mysqli_free_result($assignmentResult);
+                                } else {
+                                    echo "Error retrieving assignments: " . mysqli_error($con);
+                                }
+
+                                // Close connection
+                                mysqli_close($con);
+
+                                // Convert PHP $events array to JSON format for JavaScript
+                                $eventsJSON = json_encode($events);
+                                ?>
+
+                                <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const eventsToAdd = <?php echo $eventsJSON; ?>;
+
+                                    // Function to add a new event to the events object
+                                    addEvent(selectedDate, newEvent) {
+                                        if (!events[selectedDate]) {
+                                            events[selectedDate] = []; // Initialize array if events don't exist for the date
+                                        }
+                                        events[selectedDate].push(newEvent); // Add new event to the events array for the date
+
+                                        // Optionally, save events to localStorage or backend
+                                        saveEventsToStorage(); // Custom function to save events to localStorage or backend
+
+                                        // Refresh agenda display after adding event
+                                        displayAgenda(selectedDate);
+                                    }
+
+                                    // Initial render for current month and year
+                                    const today = new Date();
+                                    renderCalendar(today.getMonth() + 1, today.getFullYear());
+                                });
+                                </script>
+
                         </ul>
                     </div>
                 </div>
