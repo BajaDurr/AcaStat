@@ -1,86 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AcaStat</title>
-  <link rel="icon" type="assets/CAP_LOGO" href="/assets/CAP_LOGO.png">
-  
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  
-  <link href="css/submission.css" rel="stylesheet" />
-
-<?php
-    session_start();
-    if (!isset($_SESSION["loggedIn"])) {
-      include('php/login_check.php');
-      shell_exec('php login_check.php');
-    }
-  ?>
-
-</head>
+<head><?php include "php/head.php"; exec("php php/head.php");?></head>
 <body>
-
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <img class="mb-4" src="assets/CAP_LOGO.png" alt="" width="5%" height=auto />
-        <a class="navbar-brand" href="home.php">AcaStat</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="home.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Institution</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-            </li>    
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Courses</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-            </li>  
-            <?php
-              $con = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
-
-              if ($con) {
-                $uname = $_SESSION["username"];
-
-                $sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
-
-                $result = mysqli_query($con, $sql);
-                if (mysqli_num_rows($result) == 1) {
-                  echo "<li class='nav-item dropdown'>";
-                  echo "<a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='#' role='button' aria-expanded='false'>Admin Tools</a>";
-                  echo "<ul class='dropdown-menu'>";
-                  echo "<li><a class='dropdown-item' href='create_user.php'>Create New User</a></li>";
-                  echo "<li><a class='dropdown-item' href='create_course.php'>Create New Course</a></li>";
-                  echo "</ul>";
-                  echo "</li>";
-                }
-              } 
-            ?>   
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
   <main class="container mt-5">
     <!-- Assignment Details Section -->
@@ -111,14 +33,6 @@
       </form>
     </section>
   </main>
-
-  <footer class="footer mt-5">
- 
-  </footer>
-  
-  <!-- Bootstrap JavaScript Bundle with Popper -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
   <!-- Custom JavaScript for dynamic assignment details and form validation -->
   <script>
@@ -165,5 +79,7 @@
       populateAssignmentDetails();
     };
   </script>
+
+  <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
 </body>
 </html>

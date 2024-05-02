@@ -18,14 +18,14 @@ if($conn->connect_error) {
 else {
     $stmt = $conn->prepare("INSERT INTO courses(courseID, courseTitle, subject, courseCode, semester, year, instructorID)
         VALUES (?, ?, ?, ?, ?, ?, ?)");	
-        $stmt ->bind_param("issisii", $courseID, $courseTitle, $subject, $code, $semester, $year, $instructorID);
-        $stmt ->execute();
+    $stmt ->bind_param("issisii", $courseID, $courseTitle, $subject, $code, $semester, $year, $instructorID);
+    $stmt ->execute();
 
-        echo "creation successful";
-        $stmt->close();
-        $conn->close();
+    echo "creation successful";
+    $stmt->close();
+    $conn->close();
 }
-    
+
 
 
 ?>

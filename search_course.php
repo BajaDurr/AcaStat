@@ -1,108 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!--From Bootstrap documentation: Create a new index.html file in your project root. Include the <meta name="viewport"> tag as well for proper responsive behavior in mobile devices.-->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AcaStat</title>
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <!--Style sheet for icons: https://icons.getbootstrap.com/-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="css/course.css">
-  <link rel="stylesheet" href="css/search-course.css">
-  <?php
-    session_start();
-    if (!isset($_SESSION["loggedIn"])) {
-      include('php/login_check.php');
-      shell_exec('php login_check.php');
-    }
-
-    $conn = mysqli_connect('database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com', 'admin', 'JtKRAYtPsXWUU8fYQNdf', 'acastat-database');
-    if($conn->connect_error) {
-        die('Connection Failed : '.$conn->connect_error);
-    }
-  ?>
-</head>
-
+<head><?php include "php/head.php"; exec("php php/head.php");?></head>
 <body>
-
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <img class="mb-4" src="assets/CAP_LOGO.png" alt="" width="5%" height=auto></img>
-        <a class="navbar-brand" href="#">AcaStat</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Institution</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-            </li>    
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Courses</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-            </li>     
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
   <main>
     <!--For icons: https://icons.getbootstrap.com/-->
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
 
-    <form class="needs-validation" action="php/search-course-handler.php" method="post" novalidate>
+    <form class="needs-validation" action="php/create-course-handler.php" method="post" novalidate>
+
       <h1 class = "text-center">Search Catalogue</h1>
+
       <hr></hr>
+
       <div class="row justify-content-center">
         <div class="col-sm-2">
-            <label for="state" class="col-sm-2 control-label">Subject</label>
-            <select class="form-control" id="subject" name="subject">
-                <option value="">N/A</option>
-                <option value="ACCT">Accounting</option>
-                <option value="ARTS">Art</option>
-                <option value="BIOL">Biology</option>
-                <option value="CHEM">Chemistry</option>
-                <option value="COMM">Communication</option>
-                <option value="COMP">Computer Science</option>
-                <option value="ECON">Economics</option>
-                <option value="ENGL">English</option>
-                <option value="GEOG">Geograhy</option>
-                <option value="HIST">History</option>
-                <option value="MATH">Math</option>
-                <option value="MUSC">Msuic</option>
-                <option value="PHYS">Physics</option>
-                <option value="PSYC">Physcology</option>
-                <option value="SOCI">Sociology</option>
-            </select>
+          <label for="state" class="col-sm-2 control-label">Subject</label>
+          <select class="form-control" id="subject" name="subject">
+            <option value="">N/A</option>
+            <option value="ACCT">Accounting</option>
+            <option value="ARTS">Art</option>
+            <option value="BIOL">Biology</option>
+            <option value="CHEM">Chemistry</option>
+            <option value="COMM">Communication</option>
+            <option value="COMP">Computer Science</option>
+            <option value="ECON">Economics</option>
+            <option value="ENGL">English</option>
+            <option value="GEOG">Geograhy</option>
+            <option value="HIST">History</option>
+            <option value="MATH">Math</option>
+            <option value="MUSC">Msuic</option>
+            <option value="PHYS">Physics</option>
+            <option value="PSYC">Physcology</option>
+            <option value="SOCI">Sociology</option>
+          </select>
         </div>
+
+
         <div class="col-sm-2">
           <label for="validationTooltip08">Course Code</label>
-          <input type="text" class="form-control" id="validationTooltip08" placeholder="ex. 244" name="code">
+          <input type="text" class="form-control" id="validationTooltip08" placeholder="ex. 244" name="code" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
         </div>
+
+
         <div class="col-sm-2">
           <label for="state" class="col-sm-2 control-label">Semester</label>
           <select class="form-control" id="semester" name="semester">
@@ -124,50 +68,40 @@
             <option value="2028">2028</option>
           </select>
         </div>
+
         <div class="col-sm-2">
           <label for="state" class="col-sm-2 control-label">Instructor</label>
           <select class="form-control" id="instructor" name="instructor">
             <option value="">N/A</option>
             <?php
-                $sql = "SELECT firstName, lastName, instructors.userID FROM instructors INNER JOIN users ON users.userID = instructors.userID ORDER BY lastName";
+            $sql = "SELECT firstName, lastName, instructors.userID FROM instructors INNER JOIN users ON users.userID = instructors.userID ORDER BY lastName";
 
-                $result = mysqli_query($conn, $sql);
+            $result = mysqli_query($conn, $sql);
 
-                $instructors = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            $instructors = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                foreach($instructors as $row) {
-                  echo "<option value='" . $row["userID"] . "'>" . $row["lastName"] . ", " . $row["firstName"] . "</option>";
-                } 
-              ?>
+            foreach($instructors as $row) {
+              echo "<option value='" . $row["userID"] . "'>" . $row["lastName"] . ", " . $row["firstName"] . "</option>";
+            } 
+            ?>
           </select>
         </div>
-    </div>
-    <hr></hr>
-    <div class="text-center">
-      <button class="btn btn-primary" type="submit">Submit form</button>
-    </div>
-</form>
+      </div>
 
-<hr></hr>
+      <hr></hr>
+      <div class="text-center">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </div>
+    </form>
+
+    <hr></hr>
 
   <form>
     <div class="course-card">
-      <div class="course-info">
-          <h1>Subject Code: Course Title</h1>
-          <p>Semester Year, firstName lastName</p>
-      </div>
-      <div class="register-button">
-        <button type="button" href="php/register-to-course.php">Register</button> 
-      </div>
+      <h1>Subject Code: Course Title</h1>
+      <p>Semester Year</p>
     </div>
-  </form>
 
-  <footer>
-      <p class="copyright">Copyright 2024-2024 by NiddyGriddy. All Rights Reserved. AcaStat is Powered by yours truly.</p>
-  </footer>
-
-  <!--From Bootstrap documentation: Include Bootstrap’s CSS and JS. Place the <link> tag in the <head> for our CSS, and the <script> tag for our JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing </body>. Learn more about our CDN links.-->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-</body>
-</html>
+    <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+  </body>
+  </html>
