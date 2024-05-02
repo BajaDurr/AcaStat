@@ -8,12 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // Sample event data (replace this with your actual event data)
+  events = [];
   // Depending on course input course name into front ... (CS-101) "Example"
  
+  //test
   
 
   let currentMonth; // Track current displayed month
   let currentYear; // Track current displayed year
+  
 
   // Function to render calendar based on month and year
   function renderCalendar(month, year) {
