@@ -24,9 +24,9 @@
     </div>
 
       <div class="tool-bar">
-        <style> a {text-decoration: none;} </style>
-        <a class="btn btn-outline-dark me-3" role="button" href="calculator.php">Calculator <i class="bi bi-calculator"></i></a>
-        <a class="btn btn-outline-dark me-3" role="button" href="planner.php">Planner <i class="bi bi-calendar3"></i></a>
+        <style>a{text-decoration:none;}</style>
+        <a class="tool-button" href="calculator.php">Calculator <i class="bi bi-calculator"></i></a>
+        <a class="tool-button" href="planner.php">Planner <i class="bi bi-calendar3"></i></a>
       </div>
 
       <div id="card-div">

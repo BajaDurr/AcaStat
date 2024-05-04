@@ -32,6 +32,32 @@
 
 }
 
+.tool-bar {
+    display: block;
+    width: 90%;
+    margin:auto;
+    margin-top: 2em;
+    padding-left: 1em;
+    padding-bottom: 2em;
+    border-bottom: solid;
+    border-color: rgb(218, 217, 217);
+    border-width: 2px;
+
+}
+
+.tool-button {
+    margin-right: 1em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(224, 224, 224);
+    border-radius: .75em;
+    color:rgb(95, 95, 95);
+    padding: .5em 1em .5em 1em;
+    font-weight: 700;
+    font-size: x-large;
+}
+
+
 #card-div {
     width: 90%;
     margin: auto;

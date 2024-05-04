@@ -23,32 +23,23 @@
       ?>
       <!--Home Page Banner-->
       
-      <div class="jumbotron" >
-        <?php
-        echo "<h1 id='banner-text' class='display-4'>" . $return["courseTitle"] . "</h1>"
-        ?>
-      </div>
+      <div class="jumbotron" ><?php echo "<h1 id='banner-text' class='display-4'>" . $return["courseTitle"] . "</h1>"?></div>
 
       <!--Seconday Nav Bar-->
       <div class="tool-bar">
-        <button class="tool-button" href="">Material</button>
+        <style>a{text-decoration:none;}</style>
+        <a class="tool-button" href="">Material</a>
         <?php
-
-          //check if instructor
+        //check if instructor
         $query = "SELECT userID FROM instructors WHERE userID= '" . $userID . "'";
         $check = mysqli_query($conn, $query);
         $check = $check -> fetch_all(MYSQLI_ASSOC);
 
-        if (count($check) == 0) {
-          $identifier = "_student";
-        }
-        else {
-          $identifier = "_instructor";
-        }
+        if (count($check) == 0) {$identifier = "_student";} else {$identifier = "_instructor";}
         
         echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Assignments</a>";
         ?>
-        <button class="tool-button" href="">Grades</button>
+        <a class="tool-button" href="">Grades</a>
       </div>
       
 
@@ -83,11 +74,8 @@
         $returnclasslist = $returnclasslist -> fetch_all(MYSQLI_ASSOC);
         echo "<p class='class-list-header'>Class List</p>
         <div class='vertical-menu'>";
-        foreach($returnclasslist as $row) {
-          echo "<a href=''>" . $row["firstName"] . " " . $row["lastName"] . "</a>";
-        }
+        foreach($returnclasslist as $row) {echo "<a href=''>" . $row["firstName"] . " " . $row["lastName"] . "</a>";}
         echo "</div>";
-        
         ?>
 
       </div>
