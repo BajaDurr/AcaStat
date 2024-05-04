@@ -31,7 +31,7 @@
       <hr></hr>
 
       <!--Home Page Courses-->
-      <div id="card-div" class="prevent-select">
+      <div id="card-div" class="text-center">
         <?php
         //change username to userID
         $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
@@ -43,6 +43,25 @@
         $return = mysqli_query($conn, $query);
         $return = $return -> fetch_all(MYSQLI_ASSOC);
         
+        foreach($return as $row) {
+          echo
+          "<div class='card'>
+          <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
+          <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
+          <div class='card-body'>
+          <p class='card-university'>Winona State University</p>
+          <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>
+          <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
+          </div>
+          </a>
+          </div>
+          ";
+        }
+
+        $query = "SELECT * FROM courses WHERE instructorID = '" . $userID . "'";
+        $return = mysqli_query($conn, $query);
+        $return = $return -> fetch_all(MYSQLI_ASSOC);
+          
         foreach($return as $row) {
           echo
           "<div class='card'>

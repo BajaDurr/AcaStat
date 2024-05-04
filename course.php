@@ -29,7 +29,6 @@
       <!--Seconday Nav Bar-->
       <div id="prevent-select" class="tool-bar">
         <style>a{text-decoration:none;}</style>
-        <a class="tool-button" href="">Material</a>
         <?php
         //check if instructor
         $query = "SELECT userID FROM instructors WHERE userID= '" . $userID . "'";
@@ -37,6 +36,8 @@
         $check = $check -> fetch_all(MYSQLI_ASSOC);
 
         if (count($check) == 0) {$identifier = "_student";} else {$identifier = "_instructor";}
+
+        echo "<a class='tool-button' href='material" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Material</a>";
         
         echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Assignments</a>";
         ?>
