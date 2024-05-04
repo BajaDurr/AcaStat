@@ -26,17 +26,17 @@
           </div>
           <div class="input-group">
             <label id="first-option-label" for="first-option">Current Grade:</label>
-            <input type="text" id="first-option" placeholder="Enter current grade">
+            <input type="text" class="form-control" id="first-option" placeholder="Enter current grade">
             <span>%</span>
           </div>
           <div class="input-group">
             <label id="second-option-label" for="second-option">Desired Grade:</label>
-            <input type="text" id="second-option" placeholder="Enter grade">
+            <input type="text" class="form-control" id="second-option" placeholder="Enter grade">
             <span>%</span>
           </div>
           <div class="input-group">
             <label id="third-option-label" for="third-option">Final Exam Weight:</label>
-            <input type="text" id="third-option" placeholder="Enter exam weight">
+            <input type="text" class="form-control" id="third-option" placeholder="Enter exam weight">
             <span>%</span>
           </div>
           <div class="answer-box" id="answer-box">Answer: </div>
@@ -51,6 +51,6 @@
 
 
   <script src="js/calculator.js"></script>
-  <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+  <footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
 </body>
 </html>

@@ -441,6 +441,6 @@
 
 
 <!-- Custom JavaScript -->
-<footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+<footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
 </body>
 </html>

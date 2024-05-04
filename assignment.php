@@ -43,23 +43,28 @@
         <label for='exampleFormControlTextarea1' class='form-label'>Example textarea</label>
         <textarea class='form-control' id='notes' name='notes' rows='4' placeholder='Add any additional notes or comments'></textarea>
         </div>
+        <div class='text-center'>
         <!--https://getbootstrap.com/docs/4.0/components/buttons/-->
-        <button class='btn btn-primary' type='submit'>Submit Assignment</button>";
+        <button class='btn btn-primary' type='submit'>Submit Assignment</button>
+        </div>";
       } 
       else {
         echo "<div class='mb-3'>
         <label for='exampleFormControlTextarea1' class='form-label'>Example textarea</label>
         <textarea class='form-control' id='notes' name='notes' rows='4' placeholder='' disabled></textarea>
-        </div>
+        </div >
+        <div class='text-center'>
         <!--https://getbootstrap.com/docs/4.0/components/buttons/-->
         <button class='btn btn-primary' type='submit' disabled>Submit Assignment</button><br>
-        <p><b>Your file/s have been submitted</b></p>";
+        <p><b>Your file/s have been submitted</b></p>
+        </div>";
       }
       ?>
     </form>
+    <br>
   </main>
   
-  <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+  <footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
   
 </body>
 </html>

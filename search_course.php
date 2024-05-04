@@ -5,7 +5,7 @@
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
   <link rel="stylesheet" href="css/search-course.css">
   <link rel="stylesheet" href="css/course.css">
-  <main class="container-fluid">
+  <main class="container-fluid" role="main">
     <!--For icons: https://icons.getbootstrap.com/-->
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
     <br>
@@ -143,6 +143,6 @@
     ?>
     
   </form>
-  <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+  <footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
 </body>
 </html>
