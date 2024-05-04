@@ -3,16 +3,14 @@
 
         <!--Logo-->
         <img src="assets/CAP_LOGO.png" alt="AcaStat Logo" width="5%" height="auto">
-
-        <!--Project Name-->
-        <a class="navbar-brand" style="user-select: none; font-weight: bold;">AcaStat</a>
+        <img src="assets/ACASTAT_TEXT.png" alt="AcaStat Text" width="6%" height="auto">
 
         <!--nav tabs-->
         <ul class="nav nav-tabs me-auto mb-2 mb-lg-0" id="myTab" role="tablist">
 
             <!--Home-->
             <li class="nav-item">
-                <a class="nav-link" style="color:black; letter-spacing: 2px;" href="home.php">Home</a>
+                <a class="nav-link" style="color:black;" href="home.php">Home</a>
             </li>
 
             <!--Search Catalogue-->

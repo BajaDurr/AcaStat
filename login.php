@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>AcaStat</title>
-	<link rel = "icon" type= "assets/CAP_LOGO.png" href=/assets/CAP_LOGO.png>
+	<link rel = "icon" type= "assets/CAP_LOGO.png" href=assets/CAP_LOGO.png>
 	<!-- Bootstrap core CSS -->
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 	<!-- Custom styles for this template -->
@@ -16,7 +16,9 @@
 <body class="text-center">
 	<main class="container-fluid">
 		<form id="someForm" class="form-signin" action="php/login_check.php" method="post">
-			<img class="mb-4" src="assets/ACASTAT_LOGO.png" alt="" width="150" height="150"></img>
+			<div class="text-center">
+				<img class="mb-4" src="assets/ACASTAT_LOGO.png" height="150" width="150" alt=""></img>
+			</div>
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 			<input type="username" id="inputUsername" class="form-control" name="Username" placeholder="User Name" required autofocus>
 			<input type="password" id="inputPassword" class="form-control" name="Password" placeholder="Password" required>
