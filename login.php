@@ -14,7 +14,6 @@
 </head>
 
 <body class="text-center">
-
 	<form id="someForm" class="form-signin" action="php/login_check.php" method="post">
 		<img class="mb-4" src="assets/ACASTAT_LOGO.png" alt="" width="150" height="150"></img>
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
