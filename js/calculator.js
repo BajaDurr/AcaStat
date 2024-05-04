@@ -43,7 +43,7 @@ function calculateGrade() {
     }
 
     var answerBox = document.getElementById("answer-box");
-    answerBox.textContent = "Answer: " + result;
+    answerBox.placeholder = result;
 }
 
 // Clear All Fields
@@ -51,7 +51,7 @@ function clearFields() {
     document.getElementById("first-option").value = "";
     document.getElementById("second-option").value = "";
     document.getElementById("third-option").value = "";
-    document.getElementById("answer-box").textContent = "Answer: ";
+    document.getElementById("answer-box").placeholder = "Answer: ";
 }
 
 // Event Listeners for Clear and Calculate

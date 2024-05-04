@@ -36,6 +36,7 @@
 
           echo "<input type='date' class='form-control' id='dueDate' name='dueDate' value='" . date("Y-m-d") . "'  min='" . date("Y-m-d") . "' max='" . $aYearFromNow . "' />";
           ?>
+          <br>
         </div>
 
         <hr></hr>
@@ -60,7 +61,7 @@
           <button class="btn btn-primary" type="submit">Submit form</button>
         </div>
       </form>
-
+      <br></br>
       <hr></hr>
 
       

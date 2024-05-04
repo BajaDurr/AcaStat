@@ -15,6 +15,8 @@
       </div>
     </section>
 
+    <hr></hr>
+
     <!-- File Submission Section -->
     <section class="file-submission">
       <h2>Submit Your Work</h2>
@@ -29,56 +31,15 @@
           <label for="notes" class="form-label">Notes:</label>
           <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Add any additional notes or comments"></textarea>
         </div>
-        <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Submit Assignment</button>
+        <br>
+        <div class="text-center">
+          <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Submit Assignment</button>
+        </div>
       </form>
     </section>
   </main>
 
-  <!-- Custom JavaScript for dynamic assignment details and form validation -->
-  <script>
-    // Simulated assignment data (can be retrieved from a database or API)
-    var assignmentData = {
-      title: "Statistics Project",
-      deadline: "May 15, 2024",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula justo id justo consectetur, at posuere velit efficitur. Nullam euismod mauris ac fermentum mollis."
-    };
-
-    // Function to populate assignment details
-    function populateAssignmentDetails() {
-      document.getElementById('assignmentTitle').textContent = assignmentData.title;
-      document.getElementById('assignmentDeadline').textContent = assignmentData.deadline;
-      document.getElementById('assignmentDescription').textContent = assignmentData.description;
-    }
-
-    // Function to enable/disable submit button based on file selection
-    function enableSubmitButton() {
-      var fileInput = document.getElementById('myfile');
-      var submitButton = document.getElementById('submitBtn');
-
-      if (fileInput && fileInput.files.length > 0) {
-        submitButton.disabled = false;
-      } else {
-        submitButton.disabled = true;
-      }
-    }
-
-    // Function to validate form submission
-    function validateForm() {
-      var fileInput = document.getElementById('myfile');
-
-      if (fileInput && fileInput.files.length === 0) {
-        alert('Please select a file to upload.');
-        return false;
-      }
-
-      return true; // Form will submit if file is selected
-    }
-
-    // Populate assignment details when the page loads
-    window.onload = function() {
-      populateAssignmentDetails();
-    };
-  </script>
+  <script src="js/submission.js"></script>
 
   <footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
 </body>

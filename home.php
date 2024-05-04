@@ -18,9 +18,10 @@
         $result = mysqli_query($conn, $sql);
         $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        echo $user[0]['firstName'] . " " . $user[0]['lastName'];
+        echo $user[0]['firstName'] . " " . $user[0]['lastName'] . ".";
         ?>
-      </div>
+      </h1>
+    </div>
 
       <div class="tool-bar">
         <style> a {text-decoration: none;} </style>

@@ -24,10 +24,7 @@
                 <a id="prevent-select"  class="nav-link dropdown-toggle" style="color:black;" role="button" data-bs-toggle="dropdown" aria-expanded="false">Institution</a>
                 <ul class="dropdown-menu">
                     <li><a id="prevent-select"  class="dropdown-item" href="#">Action</a></li>
-                    <li><a id="prevent-select"  class="dropdown-item" href="#">Another action</a></li>
-                    <li><a id="prevent-select"  class="dropdown-item" href="#">Something else here</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a id="prevent-select"  class="dropdown-item" href="#">Separated link</a></li>
+                    <!--<li><a id="prevent-select"  class="dropdown-item" href="#">Another action</a></li> [extra item example]-->
                 </ul>
             </li>
 
@@ -35,11 +32,26 @@
             <li class="nav-item dropdown">
                 <a id="prevent-select"  class="nav-link dropdown-toggle" style="color:black;" role="button" data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
                 <ul class="dropdown-menu">
-                    <li><a id="prevent-select"  class="dropdown-item" href="#">Action</a></li>
-                    <li><a id="prevent-select"  class="dropdown-item" href="#">Another action</a></li>
-                    <li><a id="prevent-select"  class="dropdown-item" href="#">Something else here</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a id="prevent-select"  class="dropdown-item" href="#">Separated link</a></li>
+                    <?php
+                    //change username to userID
+                    $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
+                    $return = mysqli_query($conn, $query);
+                    $return = $return -> fetch_all(MYSQLI_ASSOC);
+                    $userID = $return[0]['userID'];
+
+                    $query = "SELECT * FROM users NATURAL JOIN takes NATURAL JOIN courses WHERE userID = '" . $userID . "'";
+                    $return = mysqli_query($conn, $query);
+                    $return = $return -> fetch_all(MYSQLI_ASSOC);
+                    foreach($return as $row) {
+                      echo
+                      "
+                      <li>
+                      <a id='prevent-select' class='dropdown-item' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>"
+                      . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "
+                      </a>
+                      </li>";
+                    }
+                    ?>
                 </ul>
             </li>
 
