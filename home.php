@@ -5,18 +5,17 @@
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
   <main class = "container-fluid">
+    <style>#prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
     <link rel="stylesheet" href="css/home.css"/>
     <!--For icons: https://icons.getbootstrap.com/-->
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
 
     <!--Home Page Banner-->
-    <div class="jumbotron" >
+    <div id="prevent-select" class="jumbotron" >
       <h1 id="banner-text" class="display-4">Welcome back,
         <?php 
         $sql = "SELECT firstName, lastName FROM users WHERE username ='" . $_SESSION['username'] . "'";
-
         $result = mysqli_query($conn, $sql);
-
         $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         echo $user[0]['firstName'] . " " . $user[0]['lastName'];
@@ -31,9 +30,7 @@
 
       <div id="card-div">
 
-
         <?php
-
         //change username to userID
         $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
         $return = mysqli_query($conn, $query);
