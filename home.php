@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="css/home.css"/>
   <style>#prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
   <style>.prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
-  <link rel="stylesheet" href="css/common-styles.css">
 
 
   <main class = "container-fluid">
