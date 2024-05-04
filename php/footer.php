@@ -7,7 +7,7 @@
         -------------------------------------------------- */
         .footer {
           position: relative;
-          min-height: 15vh;
+          min-height: 10vh;
         }
         #footer {
           position: absolute;
@@ -17,7 +17,6 @@
           line-height: 60px; /* Vertically center the text there */
           background-color: #f5f5f5;
         }
-
         </style>
         <p class="copyright text-center">Copyright 2024 by NiddyGriddy. All rights reserved. AcaStat is powered by yours truly.</p>
         

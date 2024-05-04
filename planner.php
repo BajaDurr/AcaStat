@@ -3,8 +3,8 @@
 <head><?php include "php/head.php"; exec("php php/head.php");?></head>
 <body>
     <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
-
     <link rel="stylesheet" href="css/planner.css"/>
+
     <?php
     // Database connection parameters
     $hostname = 'database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com';
@@ -62,11 +62,7 @@
     $eventsJSON = json_encode($events);
     ?>
 
-
-
     <script>
-
-
         document.addEventListener('DOMContentLoaded', function() {
             const monthYearElement = document.getElementById('month-year');
             const calendarDatesElement = document.getElementById('calendar-dates');
@@ -76,9 +72,6 @@
             const datesDB = <?php echo $datesJSON; ?>;  //TO-DO: remove
             const titleDB = <?php echo $titleJSON; ?>;  //TO-DO: remove
 
-
-
-
             // Sample event data (replace this with your actual event data)
             
             // Depending on course input course name into front ... (CS-101) "Example"
@@ -87,12 +80,9 @@
             // Function to add a new event to the events object
             addEvent(datesDB, titleDB);
 
-
             let currentMonth; // Track current displayed month
             let currentYear; // Track current displayed year
             
-
-
             // Function to render calendar based on month and year
             function renderCalendar(month, year) {
                 currentMonth = month;
@@ -286,7 +276,6 @@
             }
         }
 
-
             // Function to update calendar date indicator based on events presence
         function updateCalendarEventIndicator(selectedDate) {
             const calendarDateCell = document.getElementById(`calendar-date-${selectedDate}`);
@@ -302,8 +291,6 @@
                 }
             }
         }
-
-
 
             // Function to format date in a readable format (e.g., April 15, 2024)
         function formatDate(dateString) {
@@ -373,20 +360,6 @@
             prevMonthButton.addEventListener('click', showPreviousMonth);
             nextMonthButton.addEventListener('click', showNextMonth);
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
 
 
@@ -436,8 +409,8 @@
                 </div>
             </div>
         </div>
+        <br>
     </main>
-</div>
 
 
 <!-- Custom JavaScript -->

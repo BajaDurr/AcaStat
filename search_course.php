@@ -11,7 +11,7 @@
     <br>
     <form class="needs-validation" action="php/search-course-handler.php" method="post" novalidate>
 
-      <h1 class = "text-center">Search Catalogue</h1>
+      <h1 class = "text-center">Search Course Catalogue</h1>
 
       <hr></hr>
 

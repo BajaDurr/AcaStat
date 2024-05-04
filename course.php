@@ -6,6 +6,7 @@
 
   <main class="container-fluid">
     <link rel="stylesheet" href="css/course.css"/>
+    <style>#prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
     <!--For icons: https://icons.getbootstrap.com/-->
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
 
@@ -26,7 +27,7 @@
       <div class="jumbotron" ><?php echo "<h1 id='banner-text' class='display-4'>" . $return["courseTitle"] . "</h1>"?></div>
 
       <!--Seconday Nav Bar-->
-      <div class="tool-bar">
+      <div id="prevent-select" class="tool-bar">
         <style>a{text-decoration:none;}</style>
         <a class="tool-button" href="">Material</a>
         <?php
@@ -39,12 +40,13 @@
         
         echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Assignments</a>";
         ?>
-        <a class="tool-button" href="">Grades</a>
+        <a class="tool-button" href="calculator.php">Grades/Calculator</a>
+        <a class="tool-button" href="planner.php">Planner</a>
       </div>
       
 
       <!--Primary Page Content-->
-      <div class="content">
+      <div id="prevent-select" class="content">
 
         <!--Left Page Content-->
         <?php

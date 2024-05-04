@@ -1,6 +1,6 @@
 <style>#prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
 <nav id="prevent-select" class="navbar navbar-expand-lg bg-body-tertiary">
-    <div id="prevent-select" class="container-fluid">
+    <div id="prevent-select" class="container-fluid" >
 
         <!--Logo-->
         <img id="prevent-select" src="assets/CAP_LOGO.png" alt="AcaStat Logo" width="5%" height="auto">
@@ -16,7 +16,7 @@
 
             <!--Search Catalogue-->
             <li class="nav-item">
-                <a id="prevent-select"  class="nav-link" style="color:black;" href="search_course.php">Search Catalogue</a>
+                <a id="prevent-select"  class="nav-link" style="color:black;" href="search_course.php">Course Catalogue</a>
             </li>
 
             <!--Institution-->
@@ -55,21 +55,24 @@
                 </ul>
             </li>
 
-            <!--Admin Tools-->
+            <!--Tools-->
             <?php 
             if ($conn) {
                 $uname = $_SESSION["username"];
                 $sql = "SELECT * FROM users INNER JOIN admins WHERE username = '$uname' AND users.userID = admins.userID";
                 $result = mysqli_query($conn, $sql);
+
+                echo '<li class="nav-item dropdown">';
+                echo '<a id="prevent-select"  class="nav-link dropdown-toggle" style="color:black;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>';
+                echo '<ul class="dropdown-menu">';
                 if (mysqli_num_rows($result) == 1) {
-                    echo '<li class="nav-item dropdown">';
-                    echo '<a id="prevent-select"  class="nav-link dropdown-toggle" style="color:black;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Tools</a>';
-                    echo '<ul class="dropdown-menu">';
                     echo '<li><a id="prevent-select"  class="dropdown-item" href="create_user.php">Create New User</a></li>';
                     echo '<li><a id="prevent-select"  class="dropdown-item" href="create_course.php">Create New Course</a></li>';
-                    echo '</ul>';
-                    echo '</li>';
                 }
+                echo '<li><a id="prevent-select"  class="dropdown-item" href="calculator.php">Grades/Calculator</a></li>';
+                echo '<li><a id="prevent-select"  class="dropdown-item" href="planner.php">Planner</a></li>';
+                echo '</ul>';
+                echo '</li>';
             }
             ?>
         </ul>
