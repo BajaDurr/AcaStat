@@ -55,7 +55,7 @@ echo '</ul>';
 
 // Sign Out Button
 echo '<form action="php/logout.php" method="post" class="d-flex">';
-echo '<button type="submit" class="btn btn-link">Sign Out</button>';
+echo '<button type="submit" role="button" class="tool-button">Sign Out <i class="bi bi-box-arrow-right"></i></button>';
 echo '</form>';
 
 echo '</div>';

@@ -4,7 +4,7 @@
 <body>
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
-  <main>
+  <main class="container-fluid">
   </main>
 
   <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>

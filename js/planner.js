@@ -1,72 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head><?php include "php/head.php"; exec("php php/head.php");?></head>
-<body>
-    <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
-
-    <link rel="stylesheet" href="css/planner.css"/>
-    <?php
-    // Database connection parameters
-    $hostname = 'database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com';
-    $username = 'admin';
-    $password = 'JtKRAYtPsXWUU8fYQNdf';
-    $database = 'acastat-database';
-
-    // Connect to the database
-    $con = mysqli_connect($hostname, $username, $password, $database);
-
-    // Check connection
-    if (mysqli_connect_errno()) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    // Query to select assignmentID, title, and dueDate from assignments table
-    $assignmentQuery = "SELECT assignmentID, title, dueDate FROM assignments";
-
-    // Perform query for assignments
-    $assignmentResult = mysqli_query($con, $assignmentQuery);
-
-    // Initialize an array to store events
-    $events = []; //only used once
-
-    // Check if query was successful
-    if ($assignmentResult) {
-        // Fetch data from the result set (assignmentID, title, dueDate from assignments)
-        while ($row = mysqli_fetch_assoc($assignmentResult)) {
-            $title = $row['title'];
-            $dueDate = $row['dueDate'];
-
-            // Format dueDate to match JavaScript date format (YYYY-MM-DD)
-            $formattedDueDate = date('Y-m-d', strtotime($dueDate));
-
-            // Add the title to the events array using dueDate as key
-            if (!isset($events[$formattedDueDate])) {
-                $events[$formattedDueDate] = [];
-            }
-            $events[$formattedDueDate][] = $title;
-        }
-
-        // Free result set
-        mysqli_free_result($assignmentResult);
-    } else {
-        echo "Error retrieving assignments: " . mysqli_error($con);
-    }
-
-    // Close connection
-    mysqli_close($con);
-
-    // Convert PHP $events array to JSON format for JavaScript
-
-    $datesJSON = json_encode($formattedDueDate);  //TO-DO: remove
-    $titleJSON = json_encode($title); //TO-DO: remove
-    $eventsJSON = json_encode($events);
-    ?>
-
-
-
-    <script>
-
-
+<script>
         document.addEventListener('DOMContentLoaded', function() {
             const monthYearElement = document.getElementById('month-year');
             const calendarDatesElement = document.getElementById('calendar-dates');
@@ -75,8 +7,6 @@
             const events = <?php echo $eventsJSON; ?>; // Parse JSON string into JavaScript object
             const datesDB = <?php echo $datesJSON; ?>;  //TO-DO: remove
             const titleDB = <?php echo $titleJSON; ?>;  //TO-DO: remove
-
-
 
 
             // Sample event data (replace this with your actual event data)
@@ -373,74 +303,4 @@
             prevMonthButton.addEventListener('click', showPreviousMonth);
             nextMonthButton.addEventListener('click', showNextMonth);
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
-
-
-    <main class="container-fluid">
-        <div class="row mt-4">
-            <div class="col">
-                <div class="card" id="calendar-tab">
-                    <div class="card-body">
-                        <h5 class="card-title" id="month-year"></h5>
-                        <!-- Include navigation buttons for previous month and next month -->
-                        <div class="text-center mb-3">
-                            <button id="prev-month-button" class="btn btn-primary me-2">&lt; Previous Month</button>
-                            <button id="next-month-button" class="btn btn-primary">&gt; Next Month</button>
-                        </div>
-                        <!-- Calendar Content -->
-                        <table class="table table-bordered" id="calendar-body">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Sun</th>
-                                    <th scope="col">Mon</th>
-                                    <th scope="col">Tue</th>
-                                    <th scope="col">Wed</th>
-                                    <th scope="col">Thu</th>
-                                    <th scope="col">Fri</th>
-                                    <th scope="col">Sat</th>
-                                </tr>
-                            </thead>
-                            <tbody id="calendar-dates">
-                                <!-- Calendar days will be generated here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" id="agenda-tab">
-                    <h3>Agenda</h3>
-                    <div id="selected-date-info"></div>
-                    <ul id="agenda-list"></ul>
-                    <button id="add-event-button" style="display: none;">Add Event</button>
-                </div>
-                
-                <div class="card mt-4" id="upcoming-tab">
-                    <h3>Upcoming Events</h3>
-                    <div id="upcoming-events"></div>
-                    <ul id="upcoming-list"></ul>
-                </div>
-            </div>
-        </div>
-    </main>
-</div>
-
-
-<!-- Custom JavaScript -->
-<footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
-</body>
-</html>

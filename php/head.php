@@ -7,6 +7,7 @@ echo '<title>AcaStat</title>';
 echo '<link rel = "icon" type= "assets/CAP_LOGO.png" href=/assets/CAP_LOGO.png>';
 echo '<!-- Bootstrap core CSS -->';
 echo '<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"/>';
+echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">';
 session_start();
 if (!isset($_SESSION["loggedIn"])) { include("php/login_check.php"); shell_exec("php login_check.php");}
 $conn = mysqli_connect("database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com", "admin", "JtKRAYtPsXWUU8fYQNdf", "acastat-database");

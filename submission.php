@@ -4,7 +4,7 @@
 <body>
   <header><?php include "php/navbar.php"; exec("php php/navbar.php");?></header>
 
-  <main class="container mt-5">
+  <main class="container-fluid mt-5">
     <!-- Assignment Details Section -->
     <section class="assignment-details mb-5">
       <h2>Assignment Details</h2>

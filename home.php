@@ -24,8 +24,9 @@
       </div>
 
       <div class="tool-bar">
+        <style> a {text-decoration: none;} </style>
         <a class="tool-button" role="button" href="calculator.php">Calculator <i class="bi bi-calculator"></i></a>
-        <a class="tool-button" role="button" href="planner.php">Calendar <i class="bi bi-calendar3"></i></a>
+        <a class="tool-button" role="button" href="planner.php">Planner <i class="bi bi-calendar3"></i></a>
       </div>
 
       <div id="card-div">
@@ -33,7 +34,7 @@
 
         <?php
 
-          //change username to userID
+        //change username to userID
         $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
         $return = mysqli_query($conn, $query);
         $return = $return -> fetch_all(MYSQLI_ASSOC);

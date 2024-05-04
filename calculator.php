@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/calculator.css"/> 
 
   <!-- Added classes -->
-  <main class="container">
+  <main class="container-fluid">
     <div class="row">
       <div class="col-md-5">
         <div class="grades-box">
