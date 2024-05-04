@@ -5,23 +5,24 @@
         <img src="assets/CAP_LOGO.png" alt="AcaStat Logo" width="5%" height="auto">
 
         <!--Project Name-->
-        <a class="navbar-brand">AcaStat</a>
+        <a class="navbar-brand" style="user-select: none; font-weight: bold;">AcaStat</a>
 
+        <!--nav tabs-->
         <ul class="nav nav-tabs me-auto mb-2 mb-lg-0" id="myTab" role="tablist">
 
             <!--Home-->
             <li class="nav-item">
-                <a class="nav-link" href="home.php">Home</a>
+                <a class="nav-link" style="color:black; letter-spacing: 2px;" href="home.php">Home</a>
             </li>
 
             <!--Search Catalogue-->
             <li class="nav-item">
-                <a class="nav-link"  href="search_course.php">Search Catalogue</a>
+                <a class="nav-link" style="color:black;" href="search_course.php">Search Catalogue</a>
             </li>
 
             <!--Institution-->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Institution</a>
+                <a class="nav-link dropdown-toggle" style="color:black;" role="button" data-bs-toggle="dropdown" aria-expanded="false">Institution</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -33,7 +34,7 @@
 
             <!--Courses-->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
+                <a class="nav-link dropdown-toggle" style="color:black;" role="button" data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -51,7 +52,7 @@
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) == 1) {
                     echo '<li class="nav-item dropdown">';
-                    echo '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Tools</a>';
+                    echo '<a class="nav-link dropdown-toggle" style="color:black;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Tools</a>';
                     echo '<ul class="dropdown-menu">';
                     echo '<li><a class="dropdown-item" href="create_user.php">Create New User</a></li>';
                     echo '<li><a class="dropdown-item" href="create_course.php">Create New Course</a></li>';
