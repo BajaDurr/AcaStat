@@ -48,6 +48,7 @@
           "
           <div id='prevent-select' class='col'>
           <div class='card'>
+            <!-- there's something messed up with the code, this a tag has to be here or the link won't work-->
             <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
             <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
             <div class='card-body'>
@@ -70,6 +71,7 @@
           "
           <div id='prevent-select' class='col'>
           <div class='card'>
+            <!-- there's something messed up with the code, this a tag has to be here or the link won't work-->
             <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
             <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
             <div class='card-body'>
