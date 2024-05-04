@@ -54,7 +54,7 @@ if ($conn) {
 echo '</ul>';
 
 // Sign Out Button
-echo '<form action="logout.php" method="post" class="d-flex">';
+echo '<form action="php/logout.php" method="post" class="d-flex">';
 echo '<button type="submit" class="btn btn-link">Sign Out</button>';
 echo '</form>';
 

@@ -11,59 +11,59 @@
 
     <?php
       //Get course information
-      $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
-      $return = mysqli_query($conn, $query);
-      $return = $return -> fetch_all(MYSQLI_ASSOC);
-      $userID = $return[0]['userID'];
+    $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
+    $return = mysqli_query($conn, $query);
+    $return = $return -> fetch_all(MYSQLI_ASSOC);
+    $userID = $return[0]['userID'];
 
-      $query = "SELECT * FROM users NATURAL JOIN (SELECT * FROM courses WHERE courseID = '" . $_GET['courseID'] . "') as myCourse WHERE users.userID = myCourse.instructorID";
+    $query = "SELECT * FROM users NATURAL JOIN (SELECT * FROM courses WHERE courseID = '" . $_GET['courseID'] . "') as myCourse WHERE users.userID = myCourse.instructorID";
       $return = mysqli_query($conn, $query);
       $return = $return -> fetch_all(MYSQLI_ASSOC);
       $return = $return[0];
-    ?>
-    <!--Home Page Banner-->
-    
-    <div class="jumbotron" >
-      <?php
-        echo "<h1 id='banner-text' class='display-4'>" . $return["courseTitle"] . "</h1>"
       ?>
-    </div>
+      <!--Home Page Banner-->
+      
+      <div class="jumbotron" >
+        <?php
+        echo "<h1 id='banner-text' class='display-4'>" . $return["courseTitle"] . "</h1>"
+        ?>
+      </div>
 
-    <!--Seconday Nav Bar-->
-    <div class="tool-bar">
-      <button class="tool-button" href="">Material</button>
-      <?php
+      <!--Seconday Nav Bar-->
+      <div class="tool-bar">
+        <button class="tool-button" href="">Material</button>
+        <?php
 
           //check if instructor
-          $query = "SELECT userID FROM instructors WHERE userID= '" . $userID . "'";
-          $check = mysqli_query($conn, $query);
-          $check = $check -> fetch_all(MYSQLI_ASSOC);
+        $query = "SELECT userID FROM instructors WHERE userID= '" . $userID . "'";
+        $check = mysqli_query($conn, $query);
+        $check = $check -> fetch_all(MYSQLI_ASSOC);
 
-          if (count($check) == 0) {
-            $identifier = "_student";
-          }
-          else {
-            $identifier = "_instructor";
-          }
+        if (count($check) == 0) {
+          $identifier = "_student";
+        }
+        else {
+          $identifier = "_instructor";
+        }
         
         echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Assignments</a>";
-      ?>
-      <button class="tool-button" href="">Grades</button>
-    </div>
-    
+        ?>
+        <button class="tool-button" href="">Grades</button>
+      </div>
+      
 
-    <!--Primary Page Content-->
-    <div class="content">
+      <!--Primary Page Content-->
+      <div class="content">
 
-      <!--Left Page Content-->
-      <?php
-      echo "<div class='left-hand-content'>
+        <!--Left Page Content-->
+        <?php
+        echo "<div class='left-hand-content'>
         <div id='instructor-card'>
-          <img id='instructor-photo' src='photos/professor-photo.jpg' >
-          <p id='instructor-name'>" . $return["firstName"] . " " . $return["lastName"]  . "</p>
-          <p id='instructor-text'>Hello, all! I am looking forward to professing to you. All questions are welcome.<br><br>" . $return["email"] . "</p>
+        <img id='instructor-photo' src='photos/professor-photo.jpg' >
+        <p id='instructor-name'>" . $return["firstName"] . " " . $return["lastName"]  . "</p>
+        <p id='instructor-text'>Hello, all! I am looking forward to professing to you. All questions are welcome.<br><br>" . $return["email"] . "</p>
         </div>"
-      ?>
+        ?>
 
         <div class="video">
           <div class="video-call">
@@ -78,16 +78,16 @@
         
         <?php
             //Get classlist information
-          $queryclasslist = "SELECT DISTINCT firstName, lastName FROM takes NATURAL JOIN users";
-          $returnclasslist = mysqli_query($conn, $queryclasslist);
-          $returnclasslist = $returnclasslist -> fetch_all(MYSQLI_ASSOC);
-          echo "<p class='class-list-header'>Class List</p>
-                  <div class='vertical-menu'>";
-          foreach($returnclasslist as $row) {
-            echo "<a href=''>" . $row["firstName"] . " " . $row["lastName"] . "</a>";
-          }
-          echo "</div>";
-            
+        $queryclasslist = "SELECT DISTINCT firstName, lastName FROM takes NATURAL JOIN users";
+        $returnclasslist = mysqli_query($conn, $queryclasslist);
+        $returnclasslist = $returnclasslist -> fetch_all(MYSQLI_ASSOC);
+        echo "<p class='class-list-header'>Class List</p>
+        <div class='vertical-menu'>";
+        foreach($returnclasslist as $row) {
+          echo "<a href=''>" . $row["firstName"] . " " . $row["lastName"] . "</a>";
+        }
+        echo "</div>";
+        
         ?>
 
       </div>

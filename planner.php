@@ -7,7 +7,7 @@
         <?php include "php/navbar.php"; exec("php php/navbar.php");?>
     </header>
 
-<?php
+    <?php
     // Database connection parameters
     $hostname = 'database-1.cs1hkdhivv1o.eu-central-1.rds.amazonaws.com';
     $username = 'admin';
@@ -62,14 +62,14 @@
     $datesJSON = json_encode($formattedDueDate);  //TO-DO: remove
     $titleJSON = json_encode($title); //TO-DO: remove
     $eventsJSON = json_encode($events);
-?>
+    ?>
 
 
 
-<script>
+    <script>
 
 
-            document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const monthYearElement = document.getElementById('month-year');
             const calendarDatesElement = document.getElementById('calendar-dates');
             const agendaListElement = document.getElementById('agenda-list');
@@ -87,7 +87,7 @@
             
             //test
             // Function to add a new event to the events object
-                addEvent(datesDB, titleDB);
+            addEvent(datesDB, titleDB);
 
 
             let currentMonth; // Track current displayed month
@@ -183,27 +183,27 @@
             // Function to display agenda for the selected date
             function displayAgenda(selectedDate) {
             // Clear existing agenda items
-            agendaListElement.innerHTML = '';
+                agendaListElement.innerHTML = '';
 
             // Display selected date above agenda items
-            const selectedDateElement = document.createElement('p');
-            selectedDateElement.textContent = `${formatDate(selectedDate)}`;
-            agendaListElement.appendChild(selectedDateElement);
+                const selectedDateElement = document.createElement('p');
+                selectedDateElement.textContent = `${formatDate(selectedDate)}`;
+                agendaListElement.appendChild(selectedDateElement);
 
             // Check if there are events for the selected date
-            if (events[selectedDate] && events[selectedDate].length > 0) {
-                events[selectedDate].forEach(event => {
+                if (events[selectedDate] && events[selectedDate].length > 0) {
+                    events[selectedDate].forEach(event => {
                     // Create list item for the event
-                    const listItem = document.createElement('li');
+                        const listItem = document.createElement('li');
 
                     // Create span for the event text
-                    const eventText = document.createElement('span');
-                    eventText.textContent = event;
-                    listItem.appendChild(eventText);
+                        const eventText = document.createElement('span');
+                        eventText.textContent = event;
+                        listItem.appendChild(eventText);
 
                     // Create delete button for the event
-                    const deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'Delete';
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
                     deleteButton.classList.add('delete-button'); // Add class for styling
                     deleteButton.addEventListener('click', () => {
                         deleteEvent(selectedDate, event); // Call deleteEvent function on button click
@@ -215,18 +215,18 @@
                     // Append list item to agenda list
                     agendaListElement.appendChild(listItem);
                 });
-            } else {
-                const listItem = document.createElement('li');
-                listItem.textContent = 'No events for this date';
-                agendaListElement.appendChild(listItem);
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = 'No events for this date';
+                    agendaListElement.appendChild(listItem);
 
                 // If no events, remove event indicator from calendar date
-                updateCalendarEventIndicator(selectedDate);
-            }
+                    updateCalendarEventIndicator(selectedDate);
+                }
 
             // Show or hide the "Add Event" button based on whether a date is selected
-            const addEventButton = document.getElementById('add-event-button');
-            if (selectedDate) {
+                const addEventButton = document.getElementById('add-event-button');
+                if (selectedDate) {
                 addEventButton.style.display = 'inline-block'; // Show "Add Event" button
                 addEventButton.onclick = () => {
                     const newEvent = prompt('Enter new event:');
@@ -238,10 +238,10 @@
             } else {
                 addEventButton.style.display = 'none'; // Hide "Add Event" button if no date is selected
             }
-            }
+        }
 
             // Function to add a new event to the events object
-            function addEvent(selectedDate, newEvent) {
+        function addEvent(selectedDate, newEvent) {
             if (!events[selectedDate]) {
                 events[selectedDate] = []; // Initialize array if events don't exist for the date
             }
@@ -249,26 +249,26 @@
 
             // Save events to localStorage or backend (optional)
             saveEventsToStorage(); // Custom function to save events to localStorage or backend
-            }
+        }
 
             // Function to save events to localStorage (example)
-            function saveEventsToStorage() {
+        function saveEventsToStorage() {
             localStorage.setItem('events', JSON.stringify(events));
-            }
+        }
 
             // Function to load events from localStorage (example)
-            function loadEventsFromStorage() {
+        function loadEventsFromStorage() {
             const storedEvents = localStorage.getItem('events');
             if (storedEvents) {
                 events = JSON.parse(storedEvents);
             } else {
                 events = {}; // Initialize events as empty object if no events are stored
             }
-            }
+        }
 
             // Function to delete an event from the events object
 
-            function deleteEvent(selectedDate, eventToDelete) {
+        function deleteEvent(selectedDate, eventToDelete) {
             
             if (events[selectedDate]) {
                 // Filter out the event to delete
@@ -286,11 +286,11 @@
                 // Refresh agenda display after deletion (if needed)
                 displayAgenda(selectedDate);
             }
-            }
+        }
 
 
             // Function to update calendar date indicator based on events presence
-            function updateCalendarEventIndicator(selectedDate) {
+        function updateCalendarEventIndicator(selectedDate) {
             const calendarDateCell = document.getElementById(`calendar-date-${selectedDate}`);
             const eventDot = document.getElementById(`event-dot-${selectedDate}`);
 
@@ -303,19 +303,19 @@
                     eventDot.style.display = 'none'; // Hide event dot
                 }
             }
-            }
+        }
 
 
 
             // Function to format date in a readable format (e.g., April 15, 2024)
-            function formatDate(dateString) {
-                const [year, month, day] = dateString.split('-');
-                const monthName = getMonthName(parseInt(month));
-                return `${monthName} ${parseInt(day)}, ${year}`;
-            }
+        function formatDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            const monthName = getMonthName(parseInt(month));
+            return `${monthName} ${parseInt(day)}, ${year}`;
+        }
 
             // Function to display upcoming events for the next two weeks
-            function displayUpcomingEvents() {
+        function displayUpcomingEvents() {
                 upcomingEventsElement.innerHTML = ''; // Clear existing content
 
                 const today = new Date();
@@ -374,7 +374,7 @@
 
             prevMonthButton.addEventListener('click', showPreviousMonth);
             nextMonthButton.addEventListener('click', showNextMonth);
-            });
+        });
 
 
 
@@ -382,63 +382,63 @@
 
 
 
-        
 
 
 
 
 
-    
+
+
     </script>
 
 
-  <main>
-    <div class="row mt-4">
-        <div class="col">
-            <div class="card" id="calendar-tab">
-                <div class="card-body">
-                    <h5 class="card-title" id="month-year"></h5>
-                    <!-- Include navigation buttons for previous month and next month -->
-                    <div class="text-center mb-3">
-                        <button id="prev-month-button" class="btn btn-primary me-2">&lt; Previous Month</button>
-                        <button id="next-month-button" class="btn btn-primary">&gt; Next Month</button>
+    <main>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card" id="calendar-tab">
+                    <div class="card-body">
+                        <h5 class="card-title" id="month-year"></h5>
+                        <!-- Include navigation buttons for previous month and next month -->
+                        <div class="text-center mb-3">
+                            <button id="prev-month-button" class="btn btn-primary me-2">&lt; Previous Month</button>
+                            <button id="next-month-button" class="btn btn-primary">&gt; Next Month</button>
+                        </div>
+                        <!-- Calendar Content -->
+                        <table class="table table-bordered" id="calendar-body">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sun</th>
+                                    <th scope="col">Mon</th>
+                                    <th scope="col">Tue</th>
+                                    <th scope="col">Wed</th>
+                                    <th scope="col">Thu</th>
+                                    <th scope="col">Fri</th>
+                                    <th scope="col">Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-dates">
+                                <!-- Calendar days will be generated here -->
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- Calendar Content -->
-                    <table class="table table-bordered" id="calendar-body">
-                        <thead>
-                            <tr>
-                                <th scope="col">Sun</th>
-                                <th scope="col">Mon</th>
-                                <th scope="col">Tue</th>
-                                <th scope="col">Wed</th>
-                                <th scope="col">Thu</th>
-                                <th scope="col">Fri</th>
-                                <th scope="col">Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calendar-dates">
-                            <!-- Calendar days will be generated here -->
-                        </tbody>
-                    </table>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" id="agenda-tab">
+                    <h3>Agenda</h3>
+                    <div id="selected-date-info"></div>
+                    <ul id="agenda-list"></ul>
+                    <button id="add-event-button" style="display: none;">Add Event</button>
+                </div>
+                
+                <div class="card mt-4" id="upcoming-tab">
+                    <h3>Upcoming Events</h3>
+                    <div id="upcoming-events"></div>
+                    <ul id="upcoming-list"></ul>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card" id="agenda-tab">
-                <h3>Agenda</h3>
-                <div id="selected-date-info"></div>
-                <ul id="agenda-list"></ul>
-                <button id="add-event-button" style="display: none;">Add Event</button>
-            </div>
-            
-            <div class="card mt-4" id="upcoming-tab">
-                <h3>Upcoming Events</h3>
-                <div id="upcoming-events"></div>
-                <ul id="upcoming-list"></ul>
-            </div>
-        </div>
-    </div>
-</main>
+    </main>
 </div>
 
 

@@ -17,7 +17,7 @@
 
       <!--pass the course ID-->
       <?php
-        echo "<input type='hidden' class='form-control' id='validationTooltip01' name='courseID' value='" . $_GET['courseID'] . "'>"
+      echo "<input type='hidden' class='form-control' id='validationTooltip01' name='courseID' value='" . $_GET['courseID'] . "'>"
       ?>
       <hr></hr>
 
@@ -61,32 +61,32 @@
         </div>
       </form>
 
-    <hr></hr>
+      <hr></hr>
 
-   
+      
 
-    <?php
+      <?php
       //obtain all assignments for the class
       $query = "SELECT * FROM assignments WHERE courseID = '" . $_GET["courseID"] . "'";
       $return = mysqli_query($conn, $query);
       $return = $return -> fetch_all(MYSQLI_ASSOC);
-   
-        foreach($return as $row) {
-          echo 
+      
+      foreach($return as $row) {
+        echo 
           //"<form class='needs-validation' action='php/register-to-course.php?user=" . $_SESSION["username"] . "&courseID=". $result["courseID"] ."' method='get'>
-          "<a class='tool-button' href='assignment.php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"]. "&assignmentID=". $row["assignmentID"] . "'>
-          <div class='course-card'>
-              <div>   
-                <h1>" . $row["title"] . "</h1>
-                <p>Uploaded: " . $row["submissionDate"] . "</p>
-                <p>Due: " . $row["dueDate"] . "</p>
-              </div>
-            </div>
-            </a>";
-        }
+        "<a class='tool-button' href='assignment.php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"]. "&assignmentID=". $row["assignmentID"] . "'>
+        <div class='course-card'>
+        <div>   
+        <h1>" . $row["title"] . "</h1>
+        <p>Uploaded: " . $row["submissionDate"] . "</p>
+        <p>Due: " . $row["dueDate"] . "</p>
+        </div>
+        </div>
+        </a>";
+      }
       ?>
-    
-  </form>
+      
+    </form>
   </body>
   <footer class="mt-5 text-center"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
   </html>

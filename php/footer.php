@@ -1,4 +1,17 @@
 <?php
+echo '<style>';
+echo '.copyright{';
+echo 'position: relative;';
+echo 'bottom: 0;';
+echo 'left: 0;';
+echo 'right: 0;';
+echo 'background-color: rgb(201, 201, 201);';
+echo 'color:gray;';
+echo 'text-align: center;';
+echo 'padding: 2em;';
+echo '}';
+echo '</style>';
+
 echo '<p class="copyright">Copyright 2024-2024 by NiddyGriddy. All Rights Reserved. AcaStat is Powered by yours truly.</p>';
 echo '<!--From Bootstrap documentation: Include Bootstrap’s CSS and JS. Place the <link> tag in the <head> for our CSS, and the <script> tag for our JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing </body>. Learn more about our CDN links.-->';
 echo '<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>';
