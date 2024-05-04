@@ -30,8 +30,9 @@
     <br>
       <hr></hr>
 
+
       <!--Home Page Courses-->
-      <div id="card-div" class="text-center">
+      <div id="card-div" class="row row-cols-1 row-cols-md-3 g-4 align-items-center">
         <?php
         //change username to userID
         $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
@@ -45,15 +46,20 @@
         
         foreach($return as $row) {
           echo
-          "<div class='card'>
-          <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
-          <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
-          <div class='card-body'>
-          <p class='card-university'>Winona State University</p>
-          <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>
-          <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
+          "
+          <div id='prevent-select' class='col'>
+
+          <div class='card'>
+            <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
+              <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'></img>
+              <div class='card-body'>
+                <p class='card-university text-start'>Winona State University</p>
+                <p class='section text-start'>" . $row['semester'] . " " . $row['year'] . "</p>
+                <p class='card-text text-start'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
+              </div>
+            </a>
           </div>
-          </a>
+
           </div>
           ";
         }
@@ -64,7 +70,9 @@
           
         foreach($return as $row) {
           echo
-          "<div class='card'>
+          "
+          <div id='prevent-select' class='col-12 col-md-12 col-lg-4'>
+          <div class='card'>
           <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
           <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
           <div class='card-body'>
@@ -73,6 +81,7 @@
           <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
           </div>
           </a>
+          </div>
           </div>
           ";
         }
