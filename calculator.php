@@ -41,8 +41,8 @@
           </div>
           <div class="answer-box" id="answer-box">Answer: </div>
           <div class="button-group">
-            <button id="clear-button">Clear</button>
-            <button id="calculate-button">Calculate</button>
+            <button id="clear-button" class="btn btn-primary">Clear</button>
+            <button id="calculate-button" class="btn btn-primary">Calculate</button>
           </div>
         </div>
       </div>

@@ -1,0 +1,155 @@
+/* Common Styles */
+
+/* Margin and Padding */
+.margin-top {
+  margin-top: 20px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.padding {
+  padding: 20px;
+}
+
+/* Border */
+.border {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+/* Text Styling */
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-gray {
+  color: gray;
+}
+
+/* Backgrounds */
+.bg-light-gray {
+  background-color: rgb(201, 201, 201);
+}
+
+.bg-dark-gray {
+  background-color: rgb(77, 77, 77);
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+/* Dimensions */
+.width-full {
+  width: 100%;
+}
+
+.width-90 {
+  width: 90%;
+}
+
+.height-full {
+  height: 100%;
+}
+
+.height-30 {
+  height: 30em;
+}
+
+/* Flexbox and Layout */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Buttons */
+.btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: .75em;
+  font-weight: 700;
+  font-size: x-large;
+}
+
+.btn-outline {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(224, 224, 224);
+  color: rgb(95, 95, 95);
+}
+
+/* Specific Styles */
+
+/* Grades Box */
+.grades-box {
+  @extend .border;
+  @extend .padding;
+  @extend .margin-top;
+  @extend .margin-bottom;
+}
+
+.grades-header {
+  @extend .text-bold;
+  @extend .text-center;
+}
+
+/* UI Box */
+.ui-box {
+  @extend .border;
+  @extend .padding;
+  @extend .margin-top;
+}
+
+/* Tool Bar */
+.tool-bar {
+  @extend .border-bottom;
+  @extend .padding;
+  @extend .margin-top;
+  @extend .margin-bottom;
+}
+
+.tool-button {
+  @extend .btn;
+}
+
+/* Jumbotron */
+.jumbotron {
+  @extend .bg-dark-gray;
+  @extend .text-white;
+  @extend .padding;
+  @extend .margin-top;
+  @extend .border-radius;
+}
+
+/* Video Call */
+.video-call {
+  @extend .border;
+  @extend .padding;
+  @extend .margin-bottom;
+}
+
+.video-call-icon img {
+  @extend .width-10;
+  @extend .height-10;
+}
+
+/* Calendar Day */
+.calendar-day {
+  @extend .padding;
+  @extend .margin-bottom;
+}
+
+/* Register Button */
+.register-button a {
+  @extend .btn-outline;
+}
