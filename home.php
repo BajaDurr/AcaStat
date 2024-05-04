@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/home.css"/>
   <style>#prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
   <style>.prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
+  <link rel="stylesheet" href="css/common-styles.css">
 
 
   <main class = "container-fluid">
@@ -44,16 +45,17 @@
         
         foreach($return as $row) {
           echo
-          "<a href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
-          <div class='card'>
+          "<div class='card'>
+          <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
           <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
           <div class='card-body'>
           <p class='card-university'>Winona State University</p>
           <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>
           <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
           </div>
+          </a>
           </div>
-          </a>";
+          ";
         }
         ?>
         

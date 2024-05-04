@@ -5,6 +5,7 @@
 <title>AcaStat</title>
 <link rel = "icon" type= "assets/CAP_LOGO.png" href=/assets/CAP_LOGO.png>
 <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="css/common-styles.css">
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <?php
