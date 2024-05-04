@@ -12,8 +12,10 @@
     
 
     <form class="needs-validation" action="php/create-assignment-handler.php" method="post" enctype="multipart/form-data"  novalidate>
+      <br>
       <h1 class = "text-center">Assignments</h1>
     </form>
+
 
     <hr></hr>
 
@@ -41,6 +43,7 @@
     ?>
     
   </form>
-</body>
+</main>
 <footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
+</body>
 </html>

@@ -8,6 +8,7 @@
 
   <!-- Added classes -->
   <main class="container-fluid">
+    <br>
     <div class="row">
       <div class="col-md-5">
         <div class="grades-box">
@@ -47,6 +48,7 @@
         </div>
       </div>
     </div>
+    <br></br>
   </main>
 
 

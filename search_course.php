@@ -143,6 +143,7 @@
     ?>
     
   </form>
+  </main>
   <footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
 </body>
 </html>

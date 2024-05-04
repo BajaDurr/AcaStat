@@ -87,6 +87,8 @@
       ?>
       
     </form>
-  </body>
+  </main>
   <footer class="footer"><?php include "php/footer.php"; exec("php php/footer.php");?></footer>
-  </html>
+</body>
+
+</html>

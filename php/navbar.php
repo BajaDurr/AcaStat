@@ -3,7 +3,7 @@
 
         <!--Logo-->
         <img src="assets/CAP_LOGO.png" alt="AcaStat Logo" width="5%" height="auto">
-        <img src="assets/ACASTAT_TEXT.png" alt="AcaStat Text" width="6%" height="auto">
+        <img src="assets/ACASTAT_TEXT.png" alt="AcaStat Text" width="6%" height="auto" style = "margin-right:1%">
 
         <!--nav tabs-->
         <ul class="nav nav-tabs me-auto mb-2 mb-lg-0" id="myTab" role="tablist">
