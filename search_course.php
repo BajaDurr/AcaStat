@@ -8,7 +8,7 @@
   <main class="container-fluid">
     <!--For icons: https://icons.getbootstrap.com/-->
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
-
+    <br>
     <form class="needs-validation" action="php/search-course-handler.php" method="post" novalidate>
 
       <h1 class = "text-center">Search Catalogue</h1>
