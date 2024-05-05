@@ -52,11 +52,11 @@
     <br>
 
     <!--Primary Page Content-->
-    <div id="prevent-select" class="row justify-content-md-center">
+    <div class="row justify-content-md-center">
 
       <!--Left Page Content-->
       <?php
-      echo "<div class='col col-md-3'>
+      echo "<div id='prevent-select' class='col col-md-3'>
       <div id='instructor-card'>
       <img id='instructor-photo' class='img-fluid' src='photos/professor-photo.jpg' >
       <p id='instructor-name'>" . $return["firstName"] . " " . $return["lastName"]  . "</p>
@@ -90,7 +90,12 @@
 
     <div class="col col-md-7">
 
-      <h1 class="announcement-header" >Announcements<br><a type="button" class="btn btn-success" href="create_announcement.php">Create Announcement <i class="bi bi-plus"></i></a></h1>
+      <h1 class="announcement-header" >Announcements<br>
+        <?php
+        if (count($check) == 0) {} 
+        else {echo "<a type='button' class='btn btn-success' href='create_announcement.php'>Create Announcement <i class='bi bi-plus'></i></a>";}
+        ?>
+      </h1>
       
       <?php
       $query = "SELECT * FROM announcements WHERE announcements.courseID = " . $_SESSION['courseID'];
@@ -102,12 +107,11 @@
         foreach($return as $row) {
           echo
           "
-          <div class='card border-dark mb-3'>
-            <div class='card-header'>Announcement". $row['postID'] ."</div>
-            <div class='card-body'>
-              <h5 class='card-title'>Post Title: ".$row['postTitle']."</h5>
-              <p class='card-text'>Post Content: " . $row['postText'] . "</p>
-            </div>
+          <div class='alert alert-info' role='alert'>
+            <h4 class='alert-heading'>".$row['postTitle']."</h5>
+            <p>Announcement ". $row['postID'] ."</p>
+            <hr>
+            <p class='mb-0'>" . $row['postText'] . "</p>
           </div>
           ";
         }
