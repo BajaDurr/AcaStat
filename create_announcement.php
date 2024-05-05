@@ -34,14 +34,15 @@
         <!--Text Editor-->
         <div class="row justify-content-center">
           <div class="col-sm-8">
-            <div id="summernote" name="postText">
+            <textarea id="summernote" name="postText"></textarea>
             <script>
               $(document).ready(function() {
                 $('#summernote').summernote();
                 $('div.note-editable').height('33.5vh');
               });
             </script>
-            </div>
+
+
             <div class="invalid-tooltip">
               Please choose a unique and valid username.
             </div>
