@@ -11,14 +11,14 @@
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
 
     <?php
-
     //Get course information
     $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
     $return = mysqli_query($conn, $query);
     $return = $return -> fetch_all(MYSQLI_ASSOC);
     $_SESSION["userID"] = $return[0]['userID'];
+    $_SESSION["courseID"] = $_GET['courseID'];
 
-    $query = "SELECT * FROM users NATURAL JOIN (SELECT * FROM courses WHERE courseID = ". $_GET['courseID'] ." ) as myCourse WHERE users.userID = myCourse.instructorID";
+    $query = "SELECT * FROM users NATURAL JOIN (SELECT * FROM courses WHERE courseID = ". $_SESSION['courseID'] ." ) as myCourse WHERE users.userID = myCourse.instructorID";
     $return = mysqli_query($conn, $query);
     $return = $return -> fetch_all(MYSQLI_ASSOC);
     $return = $return[0];
@@ -33,16 +33,16 @@
       <?php
 
         //check if instructor for current course
-      $query = "SELECT userID FROM instructors INNER JOIN courses WHERE " . $userID . " = courses.instructorID  AND courses.courseID = " . $_GET['courseID'];
+      $query = "SELECT userID FROM instructors INNER JOIN courses WHERE " . $userID . " = courses.instructorID  AND courses.courseID = " . $_SESSION['courseID'];
 
       $check = mysqli_query($conn, $query);
       $check = $check -> fetch_all(MYSQLI_ASSOC);
 
       if (count($check) == 0) {$identifier = "_student";} else {$identifier = "_instructor";}
 
-      echo "<a class='tool-button' href='material" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Material</a>";
+      echo "<a class='tool-button' href='material" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_SESSION["courseID"] . "'>Material</a>";
 
-      echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Assignments</a>";
+      echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_SESSION["courseID"] . "'>Assignments</a>";
 
       ?>
       <a class="tool-button" href="calculator.php">Grades/Calculator</a>
@@ -89,15 +89,31 @@
     </div>
 
     <div class="col col-md-7">
-      <div class= "announcements">
-        <h1 class="announcement-header" >Announcements<br>
-          <a type="button" class="btn btn-success" href="create_announcement.php">Create Announcement <i class="bi bi-plus"></i></a>
-        </h1>
-        <div class="post">
-          <p id="no-post">There are no posts at this moment. Come back later!</p>
-        </div>
 
-      </div>
+      <h1 class="announcement-header" >Announcements<br><a type="button" class="btn btn-success" href="create_announcement.php">Create Announcement <i class="bi bi-plus"></i></a></h1>
+      
+      <?php
+      $query = "SELECT * FROM announcements WHERE announcements.courseID = " . $_SESSION['courseID'];
+
+      $result = mysqli_query($conn, $query);
+      $return = $result -> fetch_all(MYSQLI_ASSOC);
+
+      if (mysqli_num_rows($result) >= 1) {
+        foreach($return as $row) {
+          echo
+          "
+          <div class='card border-dark mb-3'>
+            <div class='card-header'>Announcement". $row['postID'] ."</div>
+            <div class='card-body'>
+              <h5 class='card-title'>Post Title: ".$row['postTitle']."</h5>
+              <p class='card-text'>Post Content: " . $row['postText'] . "</p>
+            </div>
+          </div>
+          ";
+        }
+      } else {echo "<p id='no-post'>There are no posts at this moment. Come back later!</p>";}
+      ?>
+
     </div>
 
   </div>

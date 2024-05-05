@@ -24,6 +24,7 @@ else {
     echo "registration successful";
     $stmt->close();
     $conn->close();
+    header("Location: ../course.php?user=" . $_SESSION["username"] . "&courseID=". $_SESSION['courseID']);
 }
 
 
