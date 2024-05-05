@@ -40,9 +40,14 @@
                     $userID = $return[0]['userID'];
 
                     //For students
-                    $query = "SELECT * FROM users NATURAL JOIN takes NATURAL JOIN courses WHERE userID = '" . $userID . "'";
+                    $query = "SELECT * FROM users NATURAL JOIN takes NATURAL JOIN courses WHERE userID = '" . $userID . " ' ORDER BY courses.subject, courses.courseTitle";
                     $return = mysqli_query($conn, $query);
                     $return = $return -> fetch_all(MYSQLI_ASSOC);
+
+                    if(count($return) != 0) {
+                        echo "<li><a>&nbsp;&nbsp;Taking:</a></li>";
+                    }
+
                     foreach($return as $row) {
                       echo
                       "
@@ -54,13 +59,17 @@
                     }
 
                     //For instructors
-                    $query = "SELECT * FROM courses WHERE instructorID = '" . $userID . "'";
+                    $query = "SELECT * FROM courses WHERE instructorID = '" . $userID . "' ORDER BY courses.subject, courses.courseTitle";
                     $return = mysqli_query($conn, $query);
                     $return = $return -> fetch_all(MYSQLI_ASSOC);
+
+                    if(count($return) != 0) {
+                        echo "<li><a>&nbsp;&nbsp;Teaching:</a></li>";
+                    }
+
                     foreach($return as $row) {
-                      echo
-                      "
-                      <li>
+                      
+                      echo "<li>
                       <a id='prevent-select' class='dropdown-item' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>"
                       . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "
                       </a>

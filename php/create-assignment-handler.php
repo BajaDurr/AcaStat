@@ -3,7 +3,7 @@ session_start();
 date_default_timezone_set("America/Chicago");
 
 $assignmentID = rand(1000,9999);
-$courseID = $_GET['courseID'];
+$courseID = $_POST['courseID'];
 $title = $_POST['title'];
 $submissionDate = date("Y-m-d");
 $dueDate = $_POST['dueDate'];
@@ -57,12 +57,14 @@ if($conn->connect_error) {
 else {
     $stmt = $conn->prepare("INSERT INTO assignments(assignmentID, courseID, title, submissionDate, dueDate, fileName, notes)
         VALUES (?, ?, ?, ?, ?, ?, ?)");	
-    $stmt ->bind_param("iisssss", $assignmentID, $coruse, $title, $submissionDate, $dueDate, $fileName, $notes);
+    $stmt ->bind_param("iisssss", $assignmentID, $courseID, $title, $submissionDate, $dueDate, $fileName, $notes);
     $stmt ->execute();
 
     echo "creation successful";
     $stmt->close();
     $conn->close();
+
+    header("Location: ../course_assignments_instructor.php?user=" . $_SESSION["username"] . "&courseID=". $_POST["courseID"] . "");
 }
 
 ?>

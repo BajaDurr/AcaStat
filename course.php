@@ -30,8 +30,9 @@
       <div id="prevent-select" class="tool-bar">
         <style>a{text-decoration:none;}</style>
         <?php
-        //check if instructor
-        $query = "SELECT userID FROM instructors WHERE userID= '" . $userID . "'";
+
+        //check if instructor for current course
+        $query = "SELECT userID FROM instructors INNER JOIN courses ON instructors.userID = courses.instructorID WHERE userID= '" . $userID . "' AND courseID ='" . $_GET['courseID'] . "'";
         $check = mysqli_query($conn, $query);
         $check = $check -> fetch_all(MYSQLI_ASSOC);
 
