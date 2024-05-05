@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="css/home.css"/>
   <style>#prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
   <style>.prevent-select {-webkit-user-select: none; /* Safari */-ms-user-select: none; /* IE 10 and IE 11 */user-select: none; /* Standard syntax */}</style>
-  <link rel="stylesheet" href="css/common-styles.css">
 
 
   <main class = "container-fluid">
@@ -30,8 +29,9 @@
     <br>
       <hr></hr>
 
+
       <!--Home Page Courses-->
-      <div id="card-div" class="text-center">
+      <div id="card-div" class="row row-cols-1 row-cols-md-3 g-4">
         <?php
         //change username to userID
         $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
@@ -45,15 +45,19 @@
         
         foreach($return as $row) {
           echo
-          "<div class='card'>
-          <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
-          <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
-          <div class='card-body'>
-          <p class='card-university'>Winona State University</p>
-          <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>
-          <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
+          "
+          <div id='prevent-select' class='col'>
+          <div class='card'>
+            <!-- there's something messed up with the code, this a tag has to be here or the link won't work-->
+            <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
+            <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
+            <div class='card-body'>
+            <p class='card-university'>Winona State University</p>
+            <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>
+            <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
           </div>
           </a>
+          </div>
           </div>
           ";
         }
@@ -64,15 +68,19 @@
           
         foreach($return as $row) {
           echo
-          "<div class='card'>
-          <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
-          <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
-          <div class='card-body'>
-          <p class='card-university'>Winona State University</p>
-          <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>
-          <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
+          "
+          <div id='prevent-select' class='col'>
+          <div class='card'>
+            <!-- there's something messed up with the code, this a tag has to be here or the link won't work-->
+            <a style='text-decoration:none' href='course.php?user=" . $_SESSION["username"] . "&courseID=". $row["courseID"] . "'>
+            <img src='photos/banner-photos/" . $row["photoIndex"] . ".jpg' class='card-img-top' alt='...'>
+            <div class='card-body'>
+            <p class='card-university'>Winona State University</p>
+            <p class='section'>" . $row['semester'] . " " . $row['year'] . "</p>
+            <p class='card-text'>" . $row['subject'] . " " . $row['courseCode'] . ": " . $row['courseTitle'] . "</p>
           </div>
           </a>
+          </div>
           </div>
           ";
         }

@@ -17,7 +17,7 @@
     $return = $return -> fetch_all(MYSQLI_ASSOC);
     $userID = $return[0]['userID'];
 
-    $query = "SELECT * FROM users NATURAL JOIN (SELECT * FROM courses WHERE courseID = '" . $_GET['courseID'] . "') as myCourse WHERE users.userID = myCourse.instructorID";
+    $query = "SELECT * FROM users NATURAL JOIN (SELECT * FROM courses WHERE courseID = ". $_GET['courseID'] ." ) as myCourse WHERE users.userID = myCourse.instructorID";
       $return = mysqli_query($conn, $query);
       $return = $return -> fetch_all(MYSQLI_ASSOC);
       $return = $return[0];
@@ -41,6 +41,7 @@
         echo "<a class='tool-button' href='material" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Material</a>";
         
         echo "<a class='tool-button' href='course_assignments" . $identifier . ".php?user=" . $_SESSION["username"] . "&courseID=". $_GET["courseID"] . "'>Assignments</a>";
+
         ?>
         <a class="tool-button" href="calculator.php">Grades/Calculator</a>
         <a class="tool-button" href="planner.php">Planner</a>
@@ -91,6 +92,7 @@
           <div class="post">
             <p id="no-post">There are no posts at this moment. Come back later!</p>
           </div>
+
         </div>
       </div>
 
