@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/common-styles.css">
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <?php
 session_start();
 if (!isset($_SESSION["loggedIn"])) { include("php/login_check.php"); shell_exec("php login_check.php");}

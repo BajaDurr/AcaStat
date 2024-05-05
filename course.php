@@ -15,7 +15,7 @@
     $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";
     $return = mysqli_query($conn, $query);
     $return = $return -> fetch_all(MYSQLI_ASSOC);
-    $userID = $return[0]['userID'];
+    $_SESSION["userID"] = $return[0]['userID'];
 
     $query = "SELECT * FROM users NATURAL JOIN (SELECT * FROM courses WHERE courseID = ". $_GET['courseID'] ." ) as myCourse WHERE users.userID = myCourse.instructorID";
       $return = mysqli_query($conn, $query);
@@ -32,7 +32,8 @@
         <?php
 
         //check if instructor for current course
-        $query = "SELECT userID FROM instructors INNER JOIN courses ON instructors.userID = courses.instructorID WHERE userID= '" . $userID . "' AND courseID ='" . $_GET['courseID'] . "'";
+        $query = "SELECT userID FROM instructors INNER JOIN courses WHERE " . $userID . " = courses.instructorID  AND courses.courseID = " . $_GET['courseID'];
+
         $check = mysqli_query($conn, $query);
         $check = $check -> fetch_all(MYSQLI_ASSOC);
 

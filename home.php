@@ -13,9 +13,9 @@
     <!--For button link: https://stackoverflow.com/questions/36003670/how-to-put-a-link-on-a-button-with-bootstrap-->
 
     <!--Home Page Banner-->
-    <div id="prevent-select" class="jumbotron" >
+    <div id="prevent-select"class="jumbotron" >
 
-      <h1 id="banner-text" class="display-4">Welcome back,
+      <h1 id="banner-text">Welcome back,
         <?php 
         $sql = "SELECT firstName, lastName FROM users WHERE username ='" . $_SESSION['username'] . "'";
         $result = mysqli_query($conn, $sql);
@@ -31,7 +31,7 @@
 
 
       <!--Home Page Courses-->
-      <div id="card-div" class="row row-cols-1 row-cols-md-3 g-4">
+      <div id="card-div" class="row row-cols-1 row-cols-md-3 g-4 text-center">
         <?php
         //change username to userID
         $query = "SELECT userID FROM users WHERE username = '" . $_SESSION["username"] . "'";

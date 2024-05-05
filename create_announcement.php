@@ -14,7 +14,7 @@
 
   <main class="container-fluid">
 
-    <form class="needs-validation" action="php/create-user-handler.php" method="post" novalidate>
+    <form class="needs-validation" action="php/create-announcement-handler.php" method="post" novalidate>
 
       <h1 class = "text-center">Create New Announcement</h1>
 
@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
           <div class="col-sm-4">
             <label for="validationTooltip01">Post Title</label>
-            <input type="text" class="form-control" id="validationTooltip01" placeholder="MyPostTitle" name="firstName" required>
+            <input type="text" class="form-control" id="validationTooltip01" placeholder="MyPostTitle" name="postTitle" required>
             <div class="valid-tooltip">
               Looks good!
             </div>
@@ -34,13 +34,14 @@
         <!--Text Editor-->
         <div class="row justify-content-center">
           <div class="col-sm-8">
-            <div id="summernote">Hello Summernote</div>
+            <div id="summernote" name="postText">
             <script>
               $(document).ready(function() {
                 $('#summernote').summernote();
                 $('div.note-editable').height('33.5vh');
               });
             </script>
+            </div>
             <div class="invalid-tooltip">
               Please choose a unique and valid username.
             </div>
