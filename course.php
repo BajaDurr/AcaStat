@@ -47,15 +47,16 @@
         <a class="tool-button" href="planner.php">Planner</a>
       </div>
       
+      <br>
 
       <!--Primary Page Content-->
-      <div id="prevent-select" class="content">
+      <div id="prevent-select" class="row justify-content-md-center">
 
         <!--Left Page Content-->
         <?php
-        echo "<div class='left-hand-content'>
+        echo "<div class='col col-md-3'>
         <div id='instructor-card'>
-        <img id='instructor-photo' src='photos/professor-photo.jpg' >
+        <img id='instructor-photo' class='img-fluid' src='photos/professor-photo.jpg' >
         <p id='instructor-name'>" . $return["firstName"] . " " . $return["lastName"]  . "</p>
         <p id='instructor-text'>Hello, all! I am looking forward to professing to you. All questions are welcome.<br><br>" . $return["email"] . "</p>
         </div>"
@@ -64,10 +65,10 @@
         <div class="video">
           <div class="video-call">
             <div class="video-call-icon">
-              <img src="photos/video-call-icon.png">
+              <img class='img-fluid' src="photos/video-call-icon.png">
             </div>
           </div>
-          <button class="call-button" href="">Join Meeting Room</button>
+          <button role="button" class="btn call-button" href="">Join Meeting Room</button>
         </div>
 
         <!--Mini class list-->
@@ -85,10 +86,11 @@
 
       </div>
 
-      <div class="center-content">
+      <div class="col col-md-7">
         <div class="announcements">
-          <h1 class="announcement-header" >Announcements</h1>
-          
+          <h1 class="announcement-header" >Announcements<br>
+          <a type="button" class="btn btn-success" href="create_announcement.php">Create Announcement <i class="bi bi-plus"></i></a>
+          </h1>
           <div class="post">
             <p id="no-post">There are no posts at this moment. Come back later!</p>
           </div>
