@@ -87,7 +87,7 @@
       </div>
 
       <div class="col col-md-7">
-        <div class="announcements">
+        <div class= "announcements">
           <h1 class="announcement-header" >Announcements<br>
           <a type="button" class="btn btn-success" href="create_announcement.php">Create Announcement <i class="bi bi-plus"></i></a>
           </h1>
