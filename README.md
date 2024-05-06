@@ -1,6 +1,6 @@
 # AcaStat
 
- School Project of 4 people
+ School Project of 4 people at
  Winona State University Rochester
 
 
